@@ -3,7 +3,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
-// import Navigation from '../components/Navigation'
+import { Navigation } from '../components'
 import { Root } from '.'
 
 // import { handleInitialData } from '../actions/shared'
@@ -20,6 +20,7 @@ const App = () => {
     return (
         <MuiThemeProvider theme={theme}>
             <CssBaseline />
+            <Navigation />
             <Router>
                 <Switch>
                     <Route exact path="/" component={Root} />
