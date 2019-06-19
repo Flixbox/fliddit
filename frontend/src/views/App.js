@@ -8,6 +8,7 @@ import { Root } from '.'
 
 // import { handleInitialData } from '../actions/shared'
 import { theme } from '../helpers/theme'
+import { Grid } from '@material-ui/core'
 
 /**
  * The main app that contains the entire page.
@@ -20,11 +21,17 @@ const App = () => {
     return (
         <MuiThemeProvider theme={theme}>
             <CssBaseline />
-            <Navigation />
             <Router>
-                <Switch>
-                    <Route exact path="/" component={Root} />
-                </Switch>
+                <Grid container>
+                    <Grid item xs={12} md={1}>
+                        <Navigation />
+                    </Grid>
+                    <Grid item>
+                        <Switch>
+                            <Route exact path="/" component={Root} />
+                        </Switch>
+                    </Grid>
+                </Grid>
             </Router>
         </MuiThemeProvider>
     )
