@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import { Grid } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { Navigation } from '../components'
 import { Root } from '.'
 
-// import { handleInitialData } from '../actions/shared'
+import { loadInitialData } from '../actions/shared'
 import { theme, navWidth } from '../helpers/theme'
-import { Grid } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
 
 const useStyles = makeStyles(() => ({
     '@global': {
@@ -34,10 +36,10 @@ const useStyles = makeStyles(() => ({
  * @class App
  * @extends {Component}
  */
-const App = () => {
+const App = ({ dispatch }) => {
     const classes = useStyles()
 
-    //useEffect(() => handleInitialData())
+    useEffect(() => dispatch(loadInitialData()))
 
     return (
         <MuiThemeProvider theme={theme}>
@@ -58,4 +60,6 @@ const App = () => {
     )
 }
 
-export default App
+const mapDispatchToProps = dispatch => dispatch
+
+export default connect(mapDispatchToProps)(App)

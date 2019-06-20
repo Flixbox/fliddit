@@ -1,10 +1,7 @@
-import { getInitialData } from '../helpers/api'
-import { receiveCategories } from '../actions/categories'
+import { loadCategories } from '../actions/categories'
 
-function handleInitialData() {
+export const loadInitialData = () => {
     return dispatch => {
-        return getInitialData().then(({ categories, posts, comments }) => {
-            dispatch(receiveCategories(categories))
-        })
+        dispatch(loadCategories())
     }
 }

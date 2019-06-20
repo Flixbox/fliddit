@@ -1,3 +1,10 @@
-const GET_CATEGORIES = 'GET_CATEGORIES'
-
-export const getCategories = () => {}
+export function loadCategories() {
+    return {
+        type: 'LOAD',
+        payload: {
+            request: {
+                url: '/categories',
+            },
+        },
+    }
+}
