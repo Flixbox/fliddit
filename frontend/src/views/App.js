@@ -24,8 +24,10 @@ const useStyles = makeStyles(() => ({
         width: navWidth,
     },
     content: {
-        paddingLeft: theme.spacing(1),
+        paddingLeft: theme.spacing(1) + navWidth,
         paddingTop: theme.spacing(1),
+        paddingRight: theme.spacing(1),
+        width: '100%',
     },
 }))
 
