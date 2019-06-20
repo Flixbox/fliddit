@@ -1,3 +1,4 @@
 import Navigation from './Navigation'
+import Posts from './Posts'
 
-export { Navigation }
+export { Navigation, Posts }
