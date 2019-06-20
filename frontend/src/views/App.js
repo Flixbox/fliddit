@@ -23,7 +23,7 @@ const App = () => {
             <CssBaseline />
             <Router>
                 <Grid container>
-                    <Grid item xs={12} md={1}>
+                    <Grid item>
                         <Navigation />
                     </Grid>
                     <Grid item>
