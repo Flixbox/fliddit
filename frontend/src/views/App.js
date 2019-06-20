@@ -18,6 +18,13 @@ const useStyles = makeStyles(theme => ({
             color: 'inherit',
         },
     },
+    nav: {
+        width: navWidth,
+    },
+    content: {
+        paddingLeft: theme.spacing(1),
+        paddingTop: theme.spacing(1),
+    },
 }))
 
 /**
@@ -34,13 +41,10 @@ const App = () => {
             <CssBaseline />
             <Router>
                 <Grid container>
-                    <Grid item style={{ width: navWidth }}>
+                    <Grid item className={classes.nav}>
                         <Navigation />
                     </Grid>
-                    <Grid
-                        item
-                        style={{ paddingLeft: theme.spacing(1), paddingTop: theme.spacing(1) }}
-                    >
+                    <Grid item className={classes.content}>
                         <Switch>
                             <Route exact path="/" component={Root} />
                         </Switch>
