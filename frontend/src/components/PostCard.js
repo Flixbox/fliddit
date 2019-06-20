@@ -2,6 +2,8 @@ import React from 'react'
 import { Grid, Typography, Card, CardContent, Chip, Avatar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 const useStyles = makeStyles(theme => ({
     details: {
         display: 'flex',
@@ -31,7 +33,14 @@ const PostCard = ({
                     <Typography variant="subtitle1" color="textSecondary">
                         {body}
                     </Typography>
-                    <Chip avatar={<Avatar>TEST</Avatar>} label={author} />
+                    <Chip
+                        avatar={
+                            <Avatar>
+                                <FontAwesomeIcon icon="user" />
+                            </Avatar>
+                        }
+                        label={author}
+                    />
                 </CardContent>
             </Card>
         </Grid>
