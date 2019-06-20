@@ -11,7 +11,7 @@ import { theme, navWidth } from '../helpers/theme'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     '@global': {
         a: {
             textDecoration: 'none',
