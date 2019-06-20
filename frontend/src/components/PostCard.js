@@ -64,6 +64,15 @@ const PostCard = ({
                         }
                         label={commentCount}
                     />
+                    <Chip
+                        className={classes.chip}
+                        avatar={
+                            <Avatar>
+                                <FontAwesomeIcon icon="calendar" />
+                            </Avatar>
+                        }
+                        label={new Date(timestamp).toLocaleDateString()}
+                    />
                 </CardContent>
             </Card>
         </Grid>
