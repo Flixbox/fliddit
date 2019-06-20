@@ -26,6 +26,7 @@ const PostCard = ({
     voteScore,
 }) => {
     const classes = useStyles()
+    if (deleted) return null
     return (
         <Grid item xs={12} md={6}>
             <Card className={classes.card}>

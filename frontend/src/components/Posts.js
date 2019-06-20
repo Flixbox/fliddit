@@ -7,7 +7,7 @@ const Posts = ({ posts }) => {
     console.log(posts)
     console.log(Object.keys(posts))
     return (
-        <Grid container>
+        <Grid container spacing="1">
             {Object.keys(posts).length &&
                 Object.keys(posts).map(id => <PostCard {...posts[id]} key={id} />)}
         </Grid>
