@@ -9,6 +9,9 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
     },
+    category: {
+        marginRight: theme.spacing(1),
+    },
 }))
 
 const PostCard = ({
@@ -34,12 +37,22 @@ const PostCard = ({
                         {body}
                     </Typography>
                     <Chip
+                        className={classes.category}
                         avatar={
                             <Avatar>
                                 <FontAwesomeIcon icon="user" />
                             </Avatar>
                         }
                         label={author}
+                    />
+                    <Chip
+                        className={classes.category}
+                        avatar={
+                            <Avatar>
+                                <FontAwesomeIcon icon="tag" />
+                            </Avatar>
+                        }
+                        label={`/${category}`}
                     />
                 </CardContent>
             </Card>
