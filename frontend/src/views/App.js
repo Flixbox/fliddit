@@ -7,7 +7,7 @@ import { Navigation } from '../components'
 import { Root } from '.'
 
 // import { handleInitialData } from '../actions/shared'
-import { theme } from '../helpers/theme'
+import { theme, navWidth } from '../helpers/theme'
 import { Grid } from '@material-ui/core'
 
 /**
@@ -23,7 +23,7 @@ const App = () => {
             <CssBaseline />
             <Router>
                 <Grid container>
-                    <Grid item>
+                    <Grid item style={{ width: navWidth }}>
                         <Navigation />
                     </Grid>
                     <Grid item>
