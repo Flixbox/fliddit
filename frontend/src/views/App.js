@@ -9,6 +9,16 @@ import { Root } from '.'
 // import { handleInitialData } from '../actions/shared'
 import { theme, navWidth } from '../helpers/theme'
 import { Grid } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+
+const useStyles = makeStyles(theme => ({
+    '@global': {
+        a: {
+            textDecoration: 'none',
+            color: 'inherit',
+        },
+    },
+}))
 
 /**
  * The main app that contains the entire page.
@@ -18,6 +28,7 @@ import { Grid } from '@material-ui/core'
  * @extends {Component}
  */
 const App = () => {
+    const classes = useStyles()
     return (
         <MuiThemeProvider theme={theme}>
             <CssBaseline />
