@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import { Drawer, ListItem, List, ListItemText, Divider } from '@material-ui/core'
 
 const Navigation = ({ categories }) => {
-    console.log('categories', categories)
-    console.log('keys', Object.keys(categories))
     return (
         <Drawer variant="permanent" open>
             <List>

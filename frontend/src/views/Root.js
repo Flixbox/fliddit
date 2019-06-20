@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Posts } from '../components'
 
-const Root = () => {
-    return <Posts />
+const Root = ({ posts }) => {
+    return <Posts posts={posts} />
 }
 
-export default Root
+const mapStateToProps = ({ posts }) => ({ posts })
+
+export default connect(mapStateToProps)(Root)
