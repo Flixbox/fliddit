@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Grid, Button, IconButton } from '@material-ui/core'
+import { Grid, Button, IconButton, Typography } from '@material-ui/core'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -29,7 +29,13 @@ const Posts = ({ posts }) => {
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
-                {count && <SortControl post={posts[Object.keys(posts)[0]]} sortClick={sortClick} />}
+                {count && (
+                    <SortControl
+                        post={posts[Object.keys(posts)[0]]}
+                        sortClick={sortClick}
+                        sorting={sorting}
+                    />
+                )}
             </Grid>
             {count &&
                 Object.keys(posts)
@@ -39,19 +45,33 @@ const Posts = ({ posts }) => {
     )
 }
 
-const SortControl = ({ post, sortClick }) => {
+const SortControl = ({ post, sortClick, sorting }) => {
     const fields = Object.keys(post)
     return (
         <>
+            <Typography>Sort by: </Typography>
             {fields.map(field => (
-                <SortButton field={field} sortClick={sortClick} key={field} />
+                <SortButton field={field} sortClick={sortClick} key={field} sorting={sorting} />
             ))}
         </>
     )
 }
 
-const SortButton = ({ field, sortClick }) => {
-    return <Button onClick={() => sortClick(field)}>{field} </Button>
+const SortButton = ({ field, sortClick, sorting }) => {
+    const fieldName = field
+    const renderIcon = ({ direction, field }) =>
+        fieldName === field &&
+        (direction === 'desc' ? (
+            <FontAwesomeIcon icon="arrow-circle-down" />
+        ) : (
+            <FontAwesomeIcon icon="arrow-circle-up" />
+        ))
+
+    return (
+        <Button onClick={() => sortClick(fieldName)}>
+            {fieldName} {renderIcon(sorting)}
+        </Button>
+    )
 }
 
 export default Posts
