@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
@@ -36,6 +36,9 @@ const useStyles = makeStyles(() => ({
  */
 const App = () => {
     const classes = useStyles()
+
+    //useEffect(() => handleInitialData())
+
     return (
         <MuiThemeProvider theme={theme}>
             <CssBaseline />
