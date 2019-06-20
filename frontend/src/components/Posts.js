@@ -15,13 +15,18 @@ const Posts = ({ posts }) => {
         const { direction, field } = sorting
         const a = posts[aId]
         const b = posts[bId]
-
+        debugger
         if (direction === 'asc') return a[field] - b[field]
         return b[field] - a[field]
     }
 
+    /**
+     * Sets the new sorting field.
+     * If a field is clicked repeatedly, the order is inverted.
+     * @param {String} field The name of the field that should be sorted.
+     */
     const sortClick = field => {
-        setSorting({ field })
+        setSorting({ field, direction: sorting.direction === 'desc' ? 'asc' : 'desc' })
     }
 
     const count = Object.keys(posts).length
