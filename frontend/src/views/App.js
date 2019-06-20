@@ -26,7 +26,10 @@ const App = () => {
                     <Grid item style={{ width: navWidth }}>
                         <Navigation />
                     </Grid>
-                    <Grid item>
+                    <Grid
+                        item
+                        style={{ paddingLeft: theme.spacing(1), paddingTop: theme.spacing(1) }}
+                    >
                         <Switch>
                             <Route exact path="/" component={Root} />
                         </Switch>
