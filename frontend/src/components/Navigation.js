@@ -1,8 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Drawer, ListItem, List, ListItemText, Divider } from '@material-ui/core'
 
-const Navigation = () => {
+const Navigation = ({ categories }) => {
+    console.log('categories', categories)
+    console.log('keys', Object.keys(categories))
     return (
         <Drawer variant="permanent" open>
             <List>
@@ -10,6 +13,10 @@ const Navigation = () => {
                 <Divider />
                 <NavigationItem title="My Account" />
                 <Divider />
+                {Object.keys(categories).length &&
+                    Object.keys(categories).map(id => (
+                        <NavigationItem title={categories[id].name} key={id} />
+                    ))}
             </List>
         </Drawer>
     )
@@ -25,4 +32,6 @@ const NavigationItem = ({ title, subtitle, route = '/' }) => {
     )
 }
 
-export default Navigation
+const mapStateToProps = ({ categories }) => ({ categories })
+
+export default connect(mapStateToProps)(Navigation)
