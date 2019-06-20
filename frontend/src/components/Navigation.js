@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Drawer, ListItem, List, ListItemText, Divider } from '@material-ui/core'
 
 const Navigation = () => {
@@ -14,11 +15,13 @@ const Navigation = () => {
     )
 }
 
-const NavigationItem = ({ title, subtitle }) => {
+const NavigationItem = ({ title, subtitle, route = '/' }) => {
     return (
-        <ListItem button>
-            <ListItemText primary={title} secondary={subtitle} />
-        </ListItem>
+        <Link to={route} replace>
+            <ListItem button>
+                <ListItemText primary={title} secondary={subtitle} />
+            </ListItem>
+        </Link>
     )
 }
 
