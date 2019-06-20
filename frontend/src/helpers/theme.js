@@ -2,9 +2,9 @@ import { createMuiTheme } from '@material-ui/core/styles'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 
-import { faUser, faTag } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faTag, faComments } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faUser, faTag)
+library.add(faUser, faTag, faComments)
 
 export const navWidth = 200
 
