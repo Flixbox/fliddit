@@ -13,7 +13,7 @@ const Filtered = ({ posts, match }) => {
      * @param {Object} posts
      * @returns {Object} The posts object, filtered by category.
      */
-    const filterPosts = posts =>
+    const filterPosts = (posts, category) =>
         posts &&
         Object.keys(posts)
             .filter(index => posts[index].category === category)
@@ -22,7 +22,7 @@ const Filtered = ({ posts, match }) => {
                 return obj
             }, {})
 
-    return <Posts posts={filterPosts(posts)} category={category} />
+    return <Posts posts={filterPosts(posts, category)} category={category} />
 }
 
 const mapStateToProps = ({ posts }) => ({ posts })
