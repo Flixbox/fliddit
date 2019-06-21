@@ -16,8 +16,8 @@ const Posts = ({ posts }) => {
         const a = posts[aId]
         const b = posts[bId]
 
-        if (direction === 'asc') return a[field] - b[field]
-        return b[field] - a[field]
+        if (direction === 'asc') return a[field] < b[field]
+        return b[field] < a[field]
     }
 
     /**
