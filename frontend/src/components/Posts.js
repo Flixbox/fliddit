@@ -29,12 +29,12 @@ const Posts = ({ posts }) => {
         setSorting({ field, direction: sorting.direction === 'desc' ? 'asc' : 'desc' })
     }
 
-    const count = Object.keys(posts).length
+    const shouldDisplay = Object.keys(posts).length > 0 ? true : null
 
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
-                {count && (
+                {shouldDisplay && (
                     <SortControl
                         post={posts[Object.keys(posts)[0]]}
                         sortClick={sortClick}
@@ -42,7 +42,7 @@ const Posts = ({ posts }) => {
                     />
                 )}
             </Grid>
-            {count &&
+            {shouldDisplay &&
                 Object.keys(posts)
                     .sort(postSort)
                     .map(id => <PostCard {...posts[id]} key={id} />)}
