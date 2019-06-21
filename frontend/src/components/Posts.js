@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Grid, Button, IconButton, Typography } from '@material-ui/core'
+import { Grid, Button, Typography } from '@material-ui/core'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -15,7 +15,7 @@ const Posts = ({ posts }) => {
         const { direction, field } = sorting
         const a = posts[aId]
         const b = posts[bId]
-        debugger
+
         if (direction === 'asc') return a[field] - b[field]
         return b[field] - a[field]
     }
