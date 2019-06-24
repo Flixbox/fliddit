@@ -9,6 +9,7 @@ import {
     Box,
     IconButton,
     CardActions,
+    Collapse,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
@@ -41,13 +42,20 @@ const PostCard = ({
     voteScore,
 }) => {
     const classes = useStyles()
+
+    const [expanded, setExpanded] = React.useState(false)
+
+    function handleExpandClick() {
+        setExpanded(!expanded)
+    }
+
     if (deleted) return null
     return (
         <Grid item xs={12} lg={6}>
             <Card className={classes.card}>
                 <Box className={classes.details}>
                     <Box className={classes.top}>
-                        <Box className={classes.controls}>
+                        <Box className={classes.voteControls}>
                             <FontAwesomeIcon icon="arrow-circle-up" />
                             <FontAwesomeIcon icon="arrow-circle-down" />
                         </Box>
@@ -97,14 +105,26 @@ const PostCard = ({
                             }
                             label={new Date(timestamp).toLocaleDateString()}
                         />
-                        <IconButton style={{ marginLeft: 'auto' }}>
+                        <IconButton
+                            style={{ marginLeft: 'auto' }}
+                            onClick={handleExpandClick}
+                            aria-expanded={expanded}
+                            aria-label="Show comments"
+                        >
                             <FontAwesomeIcon icon="chevron-down" />
                         </IconButton>
                     </CardActions>
+                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <CardContent>
+                            <Comments />
+                        </CardContent>
+                    </Collapse>
                 </Box>
             </Card>
         </Grid>
     )
 }
+
+const Comments = () => <Box>Comments</Box>
 
 export default PostCard
