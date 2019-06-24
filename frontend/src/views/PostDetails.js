@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { loadCommentSection } from '../actions/comments'
+import { PostCard } from '../components'
 
 const useStyles = makeStyles(theme => ({}))
 
@@ -18,10 +19,16 @@ const PostDetails = ({ dispatch, match, posts, comments }) => {
         load()
     }, [postId, dispatch])
 
-    console.log(posts)
-    const post = posts ? posts.filter(post => post.id === postId) : null
+    // Find the first post that matches our ID
+    const post = posts ? posts.filter(post => post.id === postId)[0] : null
 
-    return <Box>PostDetails</Box>
+    console.log(post)
+
+    return (
+        <Box>
+            <PostCard {...post} />
+        </Box>
+    )
 }
 
 const mapStateToProps = ({ comments, posts, dispatch }) => ({ comments, posts, dispatch })
