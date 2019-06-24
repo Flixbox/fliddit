@@ -1,9 +1,9 @@
-export function loadComments() {
+export function loadCommentSection({ postId }) {
     return {
         type: 'LOAD',
         payload: {
             request: {
-                url: '/comments',
+                url: `/posts/${postId}/comments`,
             },
         },
     }

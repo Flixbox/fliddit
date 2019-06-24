@@ -6,6 +6,5 @@ export const loadInitialData = () => {
     return dispatch => {
         dispatch(loadCategories())
         dispatch(loadPosts())
-        dispatch(loadComments())
     }
 }
