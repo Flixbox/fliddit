@@ -64,11 +64,7 @@ const PostCard = ({
                             </Typography>
                         </CardContent>
                         <Box className={classes.editControls}>
-                            <IconButton
-                                className={clsx(classes.expand, {
-                                    [classes.expandOpen]: expanded,
-                                })}
-                            >
+                            <IconButton>
                                 <FontAwesomeIcon icon="chevron-down" />
                             </IconButton>
                         </Box>
