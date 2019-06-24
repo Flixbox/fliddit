@@ -13,7 +13,11 @@ const Navigation = ({ categories }) => {
                 <Divider />
                 {Object.keys(categories).length &&
                     Object.keys(categories).map(id => (
-                        <NavigationItem title={categories[id].name} key={id} />
+                        <NavigationItem
+                            title={categories[id].name}
+                            key={id}
+                            route={`/${categories[id].path}`}
+                        />
                     ))}
             </List>
         </Drawer>
