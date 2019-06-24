@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import {
     Box,
     Typography,
@@ -15,6 +16,7 @@ import { makeStyles } from '@material-ui/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { VoteControls } from '.'
+import { vote } from '../actions/comments'
 
 const useStyles = makeStyles(theme => ({
     details: {
@@ -37,6 +39,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const CommentCard = ({
+    dispatch,
     author,
     body,
     deleted,
@@ -55,7 +58,11 @@ const CommentCard = ({
                 <Box className={classes.details}>
                     <Box className={classes.top}>
                         <Box className={classes.voteControls}>
-                            <VoteControls voteScore={voteScore} />
+                            <VoteControls
+                                voteScore={voteScore}
+                                upvote={() => dispatch(vote({ id, option: 'upVote' }))}
+                                downvote={() => dispatch(vote({ id, option: 'downVote' }))}
+                            />
                         </Box>
                         <Box className={classes.content}>
                             <Typography variant="body1">{body}</Typography>
@@ -94,4 +101,6 @@ const CommentCard = ({
     )
 }
 
-export default CommentCard
+const mapDispatchToProps = dispatch => dispatch
+
+export default connect(mapDispatchToProps)(CommentCard)

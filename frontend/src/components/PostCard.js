@@ -18,7 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 
 import { VoteControls } from '.'
-import { upvote, downvote, vote } from '../actions/posts'
+import { vote } from '../actions/posts'
 
 const useStyles = makeStyles(theme => ({
     details: {
