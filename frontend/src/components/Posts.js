@@ -33,19 +33,25 @@ const Posts = ({ posts }) => {
 
     return (
         <Grid container spacing={1}>
-            <Grid item xs={12}>
-                {shouldDisplay && (
-                    <SortControl
-                        post={posts[Object.keys(posts)[0]]}
-                        sortClick={sortClick}
-                        sorting={sorting}
-                    />
-                )}
-            </Grid>
-            {shouldDisplay &&
-                Object.keys(posts)
-                    .sort(postSort)
-                    .map(id => <PostCard {...posts[id]} key={id} linkingCard={true} />)}
+            {posts.length ? (
+                <>
+                    <Grid item xs={12}>
+                        {shouldDisplay && (
+                            <SortControl
+                                post={posts[Object.keys(posts)[0]]}
+                                sortClick={sortClick}
+                                sorting={sorting}
+                            />
+                        )}
+                    </Grid>
+                    {shouldDisplay &&
+                        Object.keys(posts)
+                            .sort(postSort)
+                            .map(id => <PostCard {...posts[id]} key={id} linkingCard={true} />)}
+                </>
+            ) : (
+                <Typography>No Posts found!</Typography>
+            )}
         </Grid>
     )
 }
