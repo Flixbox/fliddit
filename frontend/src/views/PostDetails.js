@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Box } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,6 +14,9 @@ const useStyles = makeStyles(theme => ({}))
 const PostDetails = ({ dispatch, match, posts, comments }) => {
     const { category, postId } = match.params
 
+    // Does not rerender on delete
+    console.log('Rerender PostDetails')
+
     useEffect(() => {
         const load = () => dispatch(loadCommentSection({ postId }))
         load()
@@ -24,12 +27,14 @@ const PostDetails = ({ dispatch, match, posts, comments }) => {
 
     return (
         <Box>
-            <PostCard {...post} />
+            {post ? <PostCard {...post} /> : <Typography>No post found!</Typography>}
+
             <CommentSection comments={comments} />
         </Box>
     )
 }
 
+// TODO Move my filter stuff down here
 const mapStateToProps = ({ comments, posts, dispatch }) => ({ comments, posts, dispatch })
 
 export default connect(mapStateToProps)(withRouter(PostDetails))
