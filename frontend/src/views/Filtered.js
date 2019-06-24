@@ -3,12 +3,16 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { Posts } from '../components'
-import { filterObject } from '../helpers/util'
 
 const Filtered = ({ posts, match }) => {
     const { category } = match.params
 
-    return <Posts posts={filterObject(posts, 'category', category)} category={category} />
+    return (
+        <Posts
+            posts={posts ? posts.filter(post => post.category === category) : null}
+            category={category}
+        />
+    )
 }
 
 const mapStateToProps = ({ posts }) => ({ posts })

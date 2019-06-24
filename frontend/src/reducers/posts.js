@@ -1,6 +1,6 @@
 import { LOAD_POSTS } from '../actions/posts'
 
-export default (state = {}, action) => {
+export default (state = [], action) => {
     switch (action.type) {
         case `${LOAD_POSTS}_SUCCESS`:
             const posts = action.payload.data

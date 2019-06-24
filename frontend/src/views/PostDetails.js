@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { loadCommentSection } from '../actions/comments'
-import { filterObject } from '../helpers/util'
 
 const useStyles = makeStyles(theme => ({}))
 
@@ -19,8 +18,8 @@ const PostDetails = ({ dispatch, match, posts, comments }) => {
         load()
     }, [postId, dispatch])
 
-    const post = filterObject(posts, 'id', postId)
-    console.log(post)
+    console.log(posts)
+    const post = posts ? posts.filter(post => post.id === postId) : null
 
     return <Box>PostDetails</Box>
 }
