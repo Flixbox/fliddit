@@ -41,7 +41,7 @@ const useStyles = makeStyles(() => ({
 const App = ({ dispatch }) => {
     const classes = useStyles()
 
-    useEffect(() => dispatch(loadInitialData()), [])
+    useEffect(() => dispatch(loadInitialData()), [dispatch])
 
     return (
         <MuiThemeProvider theme={theme}>
