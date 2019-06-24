@@ -16,6 +16,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { Link } from 'react-router-dom'
 
+import { VoteControls } from '.'
+
 const useStyles = makeStyles(theme => ({
     details: {
         display: 'flex',
@@ -28,7 +30,9 @@ const useStyles = makeStyles(theme => ({
     editControls: {
         marginLeft: 'auto',
     },
-    content: {},
+    content: {
+        padding: theme.spacing(1),
+    },
     chip: {
         marginRight: theme.spacing(1),
     },
@@ -54,18 +58,17 @@ const PostCard = ({
                 <Box className={classes.details}>
                     <Box className={classes.top}>
                         <Box className={classes.voteControls}>
-                            <FontAwesomeIcon icon="arrow-circle-up" />
-                            <FontAwesomeIcon icon="arrow-circle-down" />
+                            <VoteControls voteScore={voteScore} />
                         </Box>
                         <Link to={`/${category}/${id}`}>
-                            <CardContent className={classes.content}>
+                            <Box className={classes.content}>
                                 <Typography component="h5" variant="h5">
                                     {title}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
                                     {body}
                                 </Typography>
-                            </CardContent>
+                            </Box>
                         </Link>
                         <Box className={classes.editControls}>
                             <IconButton>

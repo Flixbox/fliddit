@@ -13,7 +13,7 @@ const CommentSection = ({ comments }) => {
     return (
         <Box>
             {comments.map(comment => (
-                <Box mt={1}>
+                <Box mt={1} key={comment.id}>
                     <CommentCard {...comment} />
                 </Box>
             ))}

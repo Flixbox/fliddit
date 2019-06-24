@@ -1,8 +1,10 @@
 import React from 'react'
-import { Box, Typography, Grid, Card } from '@material-ui/core'
+import { Box, Typography, Grid, Card, CardContent } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { VoteControls } from '.'
 
 const useStyles = makeStyles(theme => ({
     details: {
@@ -16,7 +18,9 @@ const useStyles = makeStyles(theme => ({
     editControls: {
         marginLeft: 'auto',
     },
-    content: {},
+    content: {
+        padding: theme.spacing(1),
+    },
     chip: {
         marginRight: theme.spacing(1),
     },
@@ -41,8 +45,10 @@ const CommentCard = ({
                 <Box className={classes.details}>
                     <Box className={classes.top}>
                         <Box className={classes.voteControls}>
-                            <FontAwesomeIcon icon="arrow-circle-up" />
-                            <FontAwesomeIcon icon="arrow-circle-down" />
+                            <VoteControls voteScore={voteScore} />
+                        </Box>
+                        <Box className={classes.content}>
+                            <Typography variant="body1">{body}</Typography>
                         </Box>
                     </Box>
                 </Box>
