@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, IconButton } from '@material-ui/core'
+import { Box, IconButton, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
     },
 }))
 
@@ -16,10 +17,11 @@ const VoteControls = ({ voteScore, upvote, downvote }) => {
 
     return (
         <Box className={classes.root}>
-            <IconButton>
+            <IconButton onClick={upvote}>
                 <FontAwesomeIcon icon="arrow-circle-up" />
             </IconButton>
-            <IconButton>
+            <Typography>{voteScore}</Typography>
+            <IconButton onClick={downvote}>
                 <FontAwesomeIcon icon="arrow-circle-down" />
             </IconButton>
         </Box>
