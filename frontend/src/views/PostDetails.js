@@ -10,8 +10,9 @@ import { loadCommentSection } from '../actions/comments'
 
 const useStyles = makeStyles(theme => ({}))
 
-const PostDetails = ({ dispatch, match }) => {
+const PostDetails = ({ dispatch, match, comments }) => {
     const { category, postId } = match.params
+    console.log(comments)
 
     useEffect(() => {
         const load = () => dispatch(loadCommentSection({ postId }))
@@ -20,6 +21,6 @@ const PostDetails = ({ dispatch, match }) => {
     return <Box>PostDetails</Box>
 }
 
-const mapDispatchToProps = dispatch => dispatch
+const mapStateToProps = ({ comments, dispatch }) => ({ comments, dispatch })
 
-export default connect(mapDispatchToProps)(withRouter(PostDetails))
+export default connect(mapStateToProps)(withRouter(PostDetails))
