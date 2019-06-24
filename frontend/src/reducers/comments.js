@@ -1,6 +1,8 @@
+import { LOAD_COMMENT_SECTION } from '../actions/comments'
+
 export default (state = {}, action) => {
     switch (action.type) {
-        case 'LOAD_SUCCESS':
+        case `${LOAD_COMMENT_SECTION}_SUCCESS`:
             const comments = action.payload.data.comments
             if (!comments) return {}
             return {

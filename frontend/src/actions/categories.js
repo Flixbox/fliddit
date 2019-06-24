@@ -1,8 +1,9 @@
+export const LOAD_CATEGORIES = 'LOAD_CATEGORIES'
+
 export function loadCategories() {
     return {
-        type: 'LOAD',
+        type: LOAD_CATEGORIES,
         payload: {
-            successSuffix: '_CATEGORIES_SUCCESS',
             request: {
                 url: '/categories',
             },
