@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/styles'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { Navigation } from '../components'
-import { Root, Filtered, PostDetails } from '.'
+import { Root, Filtered, PostDetails, NotFound } from '.'
 
 import { loadInitialData } from '../actions/shared'
 import { theme, navWidth } from '../helpers/theme'
@@ -56,6 +56,7 @@ const App = ({ dispatch }) => {
                             <Route exact path="/" component={Root} />
                             <Route exact path="/:category" component={Filtered} />
                             <Route exact path="/:category/:postId" component={PostDetails} />
+                            <Route path="*" component={NotFound} />
                         </Switch>
                     </Grid>
                 </Grid>
