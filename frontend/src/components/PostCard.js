@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import {
     Grid,
     Typography,
@@ -17,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 
 import { VoteControls } from '.'
+import { upvote, downvote } from '../actions/posts'
 
 const useStyles = makeStyles(theme => ({
     details: {
@@ -39,6 +41,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const PostCard = ({
+    dispatch,
     author,
     body,
     category,
@@ -58,7 +61,11 @@ const PostCard = ({
                 <Box className={classes.details}>
                     <Box className={classes.top}>
                         <Box className={classes.voteControls}>
-                            <VoteControls voteScore={voteScore} />
+                            <VoteControls
+                                voteScore={voteScore}
+                                upvote={() => dispatch(upvote({ id }))}
+                                downvote={() => dispatch(downvote({ id }))}
+                            />
                         </Box>
                         <Link to={`/${category}/${id}`}>
                             <Box className={classes.content}>
@@ -120,4 +127,6 @@ const PostCard = ({
     )
 }
 
-export default PostCard
+const mapDispatchToProps = dispatch => dispatch
+
+export default connect(mapDispatchToProps)(PostCard)
