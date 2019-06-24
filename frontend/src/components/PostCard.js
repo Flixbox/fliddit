@@ -18,7 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 
 import { VoteControls } from '.'
-import { upvote, downvote } from '../actions/posts'
+import { upvote, downvote, vote } from '../actions/posts'
 
 const useStyles = makeStyles(theme => ({
     details: {
@@ -63,8 +63,8 @@ const PostCard = ({
                         <Box className={classes.voteControls}>
                             <VoteControls
                                 voteScore={voteScore}
-                                upvote={() => dispatch(upvote({ id }))}
-                                downvote={() => dispatch(downvote({ id }))}
+                                upvote={() => dispatch(vote({ id, option: 'upVote' }))}
+                                downvote={() => dispatch(vote({ id, option: 'upVote' }))}
                             />
                         </Box>
                         <Link to={`/${category}/${id}`}>

@@ -1,6 +1,5 @@
 export const LOAD_POSTS = 'LOAD_POSTS'
-export const UPVOTE = 'UPVOTE'
-export const DOWNVOTE = 'DOWNVOTE'
+export const VOTE_POST = 'VOTE_POST'
 
 export function loadPosts() {
     return {
@@ -13,30 +12,16 @@ export function loadPosts() {
     }
 }
 
-export function upvote({ id }) {
+export function vote({ id, option }) {
     return {
-        type: UPVOTE,
+        type: VOTE_POST,
         payload: {
             request: {
                 method: 'POST',
                 url: `/posts/${id}`,
                 data: {
-                    option: 'upVote',
-                },
-            },
-        },
-    }
-}
-
-export function downvote({ id }) {
-    return {
-        type: DOWNVOTE,
-        payload: {
-            request: {
-                method: 'POST',
-                url: `/posts/${id}?vote=downVote`,
-                data: {
-                    option: 'downVote',
+                    id,
+                    option,
                 },
             },
         },
