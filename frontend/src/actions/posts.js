@@ -37,6 +37,7 @@ export function editPost({ id, title, body }) {
                 method: 'PUT',
                 url: `/posts/${id}`,
                 data: {
+                    id,
                     title,
                     body,
                 },
