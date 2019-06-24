@@ -16,6 +16,7 @@ import { makeStyles } from '@material-ui/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import clsx from 'clsx'
+import { CommentSection } from '.'
 
 const useStyles = makeStyles(theme => ({
     details: {
@@ -131,7 +132,7 @@ const PostCard = ({
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <CardContent>
-                            <Comments />
+                            <CommentSection />
                         </CardContent>
                     </Collapse>
                 </Box>
@@ -139,7 +140,5 @@ const PostCard = ({
         </Grid>
     )
 }
-
-const Comments = () => <Box>Comments</Box>
 
 export default PostCard
