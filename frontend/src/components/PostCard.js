@@ -15,6 +15,8 @@ import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import clsx from 'clsx'
+
 const useStyles = makeStyles(theme => ({
     details: {
         display: 'flex',
@@ -27,6 +29,16 @@ const useStyles = makeStyles(theme => ({
     content: {},
     chip: {
         marginRight: theme.spacing(1),
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
     },
 }))
 
@@ -106,6 +118,9 @@ const PostCard = ({
                             label={new Date(timestamp).toLocaleDateString()}
                         />
                         <IconButton
+                            className={clsx(classes.expand, {
+                                [classes.expandOpen]: expanded,
+                            })}
                             style={{ marginLeft: 'auto' }}
                             onClick={handleExpandClick}
                             aria-expanded={expanded}
