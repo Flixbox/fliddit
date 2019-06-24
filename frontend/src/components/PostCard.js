@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 
 import { VoteControls } from '.'
-import { vote } from '../actions/posts'
+import { vote, editPost } from '../actions/posts'
 
 const useStyles = makeStyles(theme => ({
     details: {
@@ -95,7 +95,7 @@ const PostCard = ({
                             component={linkingCard ? Link : Box}
                             to={linkingCard && `/${category}/${id}`}
                         >
-                            {linkingCard ? (
+                            {linkingCard || !editMode ? (
                                 <>
                                     <Typography variant="h5">{title}</Typography>
                                     <Typography variant="subtitle1" color="textSecondary">
@@ -130,7 +130,12 @@ const PostCard = ({
                         <Box className={classes.editControls}>
                             {editMode ? (
                                 <>
-                                    <IconButton>
+                                    <IconButton
+                                        onClick={() => {
+                                            setEditMode(false)
+                                            dispatch(editPost({ id, title, body }))
+                                        }}
+                                    >
                                         <FontAwesomeIcon icon="save" />
                                     </IconButton>
                                     <IconButton
