@@ -36,12 +36,9 @@ export default (state = [], action) => {
         case DELETE_POST:
             if (!state) return null
             const { id } = action.payload.request.data
-            return state.map(post => {
-                if (post.id === id) {
-                    return null
-                }
-                return post
-            })
+            const result = state
+            state.map((post, index) => post.id === id && result.splice(index, 1))
+            return result
         default:
             return state
     }
