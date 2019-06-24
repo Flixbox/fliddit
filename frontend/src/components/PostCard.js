@@ -9,14 +9,10 @@ import {
     Box,
     IconButton,
     CardActions,
-    Collapse,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import clsx from 'clsx'
-import { CommentSection } from '.'
 
 const useStyles = makeStyles(theme => ({
     details: {
@@ -27,19 +23,12 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'row',
     },
+    editControls: {
+        marginLeft: 'auto',
+    },
     content: {},
     chip: {
         marginRight: theme.spacing(1),
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
     },
 }))
 
@@ -55,12 +44,6 @@ const PostCard = ({
     voteScore,
 }) => {
     const classes = useStyles()
-
-    const [expanded, setExpanded] = React.useState(false)
-
-    function handleExpandClick() {
-        setExpanded(!expanded)
-    }
 
     if (deleted) return null
     return (
@@ -80,6 +63,15 @@ const PostCard = ({
                                 {body}
                             </Typography>
                         </CardContent>
+                        <Box className={classes.editControls}>
+                            <IconButton
+                                className={clsx(classes.expand, {
+                                    [classes.expandOpen]: expanded,
+                                })}
+                            >
+                                <FontAwesomeIcon icon="chevron-down" />
+                            </IconButton>
+                        </Box>
                     </Box>
                     <CardActions>
                         <Chip
@@ -118,23 +110,7 @@ const PostCard = ({
                             }
                             label={new Date(timestamp).toLocaleDateString()}
                         />
-                        <IconButton
-                            className={clsx(classes.expand, {
-                                [classes.expandOpen]: expanded,
-                            })}
-                            style={{ marginLeft: 'auto' }}
-                            onClick={handleExpandClick}
-                            aria-expanded={expanded}
-                            aria-label="Show comments"
-                        >
-                            <FontAwesomeIcon icon="chevron-down" />
-                        </IconButton>
                     </CardActions>
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
-                        <CardContent>
-                            <CommentSection />
-                        </CardContent>
-                    </Collapse>
                 </Box>
             </Card>
         </Grid>
