@@ -64,7 +64,7 @@ const PostCard = ({
                             <VoteControls
                                 voteScore={voteScore}
                                 upvote={() => dispatch(vote({ id, option: 'upVote' }))}
-                                downvote={() => dispatch(vote({ id, option: 'upVote' }))}
+                                downvote={() => dispatch(vote({ id, option: 'downVote' }))}
                             />
                         </Box>
                         <Link to={`/${category}/${id}`}>
