@@ -5,9 +5,7 @@ export default (state = {}, action) => {
         case `${LOAD_POSTS}_SUCCESS`:
             const posts = action.payload.data
             if (!posts) return state
-            return {
-                ...posts,
-            }
+            return posts
         default:
             return state
     }
