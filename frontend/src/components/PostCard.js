@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 
 import { VoteControls } from '.'
-import { vote, editPost } from '../actions/posts'
+import { vote, editPost, deletePost } from '../actions/posts'
 
 const useStyles = makeStyles(theme => ({
     details: {
@@ -152,7 +152,7 @@ const PostCard = ({
                                     <IconButton onClick={() => setEditMode(true)}>
                                         <FontAwesomeIcon icon="edit" />
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton onClick={() => dispatch(deletePost({ id }))}>
                                         <FontAwesomeIcon icon="trash" />
                                     </IconButton>
                                 </>

@@ -1,4 +1,4 @@
-import { LOAD_POSTS, VOTE_POST, EDIT_POST } from '../actions/posts'
+import { LOAD_POSTS, VOTE_POST, EDIT_POST, DELETE_POST } from '../actions/posts'
 
 export default (state = [], action) => {
     switch (action.type) {
@@ -19,7 +19,7 @@ export default (state = [], action) => {
                 return post
             })
         }
-        case EDIT_POST:
+        case EDIT_POST: {
             if (!state) return null
             const { id, title, body } = action.payload.request.data
             return state.map(post => {
@@ -29,6 +29,16 @@ export default (state = [], action) => {
                         title,
                         body,
                     }
+                }
+                return post
+            })
+        }
+        case DELETE_POST:
+            if (!state) return null
+            const { id } = action.payload.request.data
+            return state.map(post => {
+                if (post.id === id) {
+                    return {}
                 }
                 return post
             })
