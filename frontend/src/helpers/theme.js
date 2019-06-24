@@ -10,6 +10,10 @@ import {
     faArrowCircleUp,
     faArrowCircleDown,
     faChevronDown,
+    faEdit,
+    faTrash,
+    faSave,
+    faWindowClose,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -19,7 +23,11 @@ library.add(
     faCalendar,
     faArrowCircleUp,
     faArrowCircleDown,
-    faChevronDown
+    faChevronDown,
+    faEdit,
+    faTrash,
+    faSave,
+    faWindowClose
 )
 
 export const navWidth = 200

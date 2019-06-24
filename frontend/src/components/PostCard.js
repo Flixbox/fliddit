@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
     },
     editControls: {
         marginLeft: 'auto',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'start',
     },
     content: {
         padding: theme.spacing(1),
@@ -50,7 +53,7 @@ const PostCard = ({
     dispatch,
     linkingCard,
     author,
-    body,
+    body: bodyProp,
     category,
     commentCount,
     deleted,
@@ -60,12 +63,18 @@ const PostCard = ({
     voteScore,
 }) => {
     const classes = useStyles()
-    const [title, setTitle] = useState('Loading...')
+    const [title, setTitle] = useState('Loading title...')
+    const [body, setBody] = useState('Loading body...')
     const [editMode, setEditMode] = useState(false)
 
+    const reset = ({ title, body }) => {
+        title && setTitle(title)
+        body && setBody(body)
+    }
+
     useEffect(() => {
-        titleProp && setTitle(titleProp)
-    }, [titleProp])
+        reset({ title: titleProp, body: bodyProp })
+    }, [titleProp, bodyProp])
 
     console.log(titleProp)
     if (deleted) return null
@@ -87,28 +96,62 @@ const PostCard = ({
                             to={linkingCard && `/${category}/${id}`}
                         >
                             {linkingCard ? (
-                                <Typography variant="h5">{title}</Typography>
+                                <>
+                                    <Typography variant="h5">{title}</Typography>
+                                    <Typography variant="subtitle1" color="textSecondary">
+                                        {body}
+                                    </Typography>
+                                </>
                             ) : (
-                                <InputBase
-                                    id="title"
-                                    value={title}
-                                    onChange={e => setTitle(e.target.value)}
-                                    fullWidth
-                                    disabled={editMode ? false : true}
-                                    classes={{
-                                        disabled: classes.disabledInput,
-                                    }}
-                                />
+                                <>
+                                    <InputBase
+                                        id="title"
+                                        value={title}
+                                        onChange={e => setTitle(e.target.value)}
+                                        fullWidth
+                                        disabled={editMode ? false : true}
+                                        classes={{
+                                            disabled: classes.disabledInput,
+                                        }}
+                                    />
+                                    <InputBase
+                                        id="body"
+                                        value={body}
+                                        onChange={e => setBody(e.target.value)}
+                                        fullWidth
+                                        disabled={editMode ? false : true}
+                                        classes={{
+                                            disabled: classes.disabledInput,
+                                        }}
+                                    />
+                                </>
                             )}
-
-                            <Typography variant="subtitle1" color="textSecondary">
-                                {body}
-                            </Typography>
                         </Box>
                         <Box className={classes.editControls}>
-                            <IconButton>
-                                <FontAwesomeIcon icon="chevron-down" />
-                            </IconButton>
+                            {editMode ? (
+                                <>
+                                    <IconButton>
+                                        <FontAwesomeIcon icon="save" />
+                                    </IconButton>
+                                    <IconButton
+                                        onClick={() => {
+                                            setEditMode(false)
+                                            reset({ title: titleProp, body: bodyProp })
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon="window-close" />
+                                    </IconButton>
+                                </>
+                            ) : (
+                                <>
+                                    <IconButton onClick={() => setEditMode(true)}>
+                                        <FontAwesomeIcon icon="edit" />
+                                    </IconButton>
+                                    <IconButton>
+                                        <FontAwesomeIcon icon="trash" />
+                                    </IconButton>
+                                </>
+                            )}
                         </Box>
                     </Box>
                     <CardActions>
