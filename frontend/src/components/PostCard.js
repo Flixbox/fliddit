@@ -86,16 +86,21 @@ const PostCard = ({
                             component={linkingCard ? Link : Box}
                             to={linkingCard && `/${category}/${id}`}
                         >
-                            <InputBase
-                                id="title"
-                                value={title}
-                                onChange={e => setTitle(e.target.value)}
-                                fullWidth
-                                disabled={editMode ? false : true}
-                                classes={{
-                                    disabled: classes.disabledInput,
-                                }}
-                            />
+                            {linkingCard ? (
+                                <Typography variant="h5">{title}</Typography>
+                            ) : (
+                                <InputBase
+                                    id="title"
+                                    value={title}
+                                    onChange={e => setTitle(e.target.value)}
+                                    fullWidth
+                                    disabled={editMode ? false : true}
+                                    classes={{
+                                        disabled: classes.disabledInput,
+                                    }}
+                                />
+                            )}
+
                             <Typography variant="subtitle1" color="textSecondary">
                                 {body}
                             </Typography>
