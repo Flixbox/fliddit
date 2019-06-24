@@ -38,7 +38,7 @@ export default (state = [], action) => {
             const { id } = action.payload.request.data
             return state.map(post => {
                 if (post.id === id) {
-                    return {}
+                    return null
                 }
                 return post
             })
