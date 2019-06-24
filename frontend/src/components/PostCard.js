@@ -92,10 +92,10 @@ const PostCard = ({
                         </Box>
                         <Box
                             className={classes.content}
-                            component={linkingCard ? Link : Box}
+                            component={linkingCard && !editMode ? Link : Box}
                             to={linkingCard && `/${category}/${id}`}
                         >
-                            {linkingCard || !editMode ? (
+                            {!editMode ? (
                                 <>
                                     <Typography variant="h5">{title}</Typography>
                                     <Typography variant="subtitle1" color="textSecondary">
