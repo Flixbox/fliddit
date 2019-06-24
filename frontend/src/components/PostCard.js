@@ -50,7 +50,7 @@ const PostCard = ({
     if (deleted) return null
     return (
         <Grid item xs={12} lg={6}>
-            <Card className={classes.card}>
+            <Card>
                 <Box className={classes.details}>
                     <Box className={classes.top}>
                         <Box className={classes.voteControls}>
