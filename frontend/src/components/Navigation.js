@@ -9,8 +9,6 @@ const Navigation = ({ categories }) => {
             <List>
                 <NavigationItem title="FLIDDIT" subtitle="A social platform" />
                 <Divider />
-                <NavigationItem title="My Account" />
-                <Divider />
                 {Object.keys(categories).length &&
                     Object.keys(categories).map(id => (
                         <NavigationItem
