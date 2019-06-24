@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { Link } from 'react-router-dom'
+
 const useStyles = makeStyles(theme => ({
     details: {
         display: 'flex',
@@ -55,14 +57,16 @@ const PostCard = ({
                             <FontAwesomeIcon icon="arrow-circle-up" />
                             <FontAwesomeIcon icon="arrow-circle-down" />
                         </Box>
-                        <CardContent className={classes.content}>
-                            <Typography component="h5" variant="h5">
-                                {title}
-                            </Typography>
-                            <Typography variant="subtitle1" color="textSecondary">
-                                {body}
-                            </Typography>
-                        </CardContent>
+                        <Link to={`/${category}/${id}`}>
+                            <CardContent className={classes.content}>
+                                <Typography component="h5" variant="h5">
+                                    {title}
+                                </Typography>
+                                <Typography variant="subtitle1" color="textSecondary">
+                                    {body}
+                                </Typography>
+                            </CardContent>
+                        </Link>
                         <Box className={classes.editControls}>
                             <IconButton>
                                 <FontAwesomeIcon icon="chevron-down" />
