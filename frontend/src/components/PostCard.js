@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {
     Grid,
@@ -10,6 +10,7 @@ import {
     Box,
     IconButton,
     CardActions,
+    TextField,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
@@ -34,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     },
     content: {
         padding: theme.spacing(1),
+        width: '100%',
     },
     chip: {
         marginRight: theme.spacing(1),
@@ -49,10 +51,11 @@ const PostCard = ({
     deleted,
     id,
     timestamp,
-    title,
+    title: titleProp,
     voteScore,
 }) => {
     const classes = useStyles()
+    const [title, setTitle] = useState(titleProp)
 
     if (deleted) return null
     return (
@@ -67,16 +70,17 @@ const PostCard = ({
                                 downvote={() => dispatch(vote({ id, option: 'downVote' }))}
                             />
                         </Box>
-                        <Link to={`/${category}/${id}`}>
-                            <Box className={classes.content}>
-                                <Typography component="h5" variant="h5">
-                                    {title}
-                                </Typography>
-                                <Typography variant="subtitle1" color="textSecondary">
-                                    {body}
-                                </Typography>
-                            </Box>
-                        </Link>
+                        <Box className={classes.content} component={Link} to={`/${category}/${id}`}>
+                            <TextField
+                                id="title"
+                                value={title}
+                                onChange={e => setTitle(e.target.value)}
+                                fullWidth
+                            />
+                            <Typography variant="subtitle1" color="textSecondary">
+                                {body}
+                            </Typography>
+                        </Box>
                         <Box className={classes.editControls}>
                             <IconButton>
                                 <FontAwesomeIcon icon="chevron-down" />
