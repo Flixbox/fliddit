@@ -9,9 +9,18 @@ import {
     faCalendar,
     faArrowCircleUp,
     faArrowCircleDown,
+    faChevronDown,
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faUser, faTag, faComments, faCalendar, faArrowCircleUp, faArrowCircleDown)
+library.add(
+    faUser,
+    faTag,
+    faComments,
+    faCalendar,
+    faArrowCircleUp,
+    faArrowCircleDown,
+    faChevronDown
+)
 
 export const navWidth = 200
 
