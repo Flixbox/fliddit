@@ -1,5 +1,15 @@
 import React from 'react'
-import { Box, Typography, Grid, Card, CardContent } from '@material-ui/core'
+import {
+    Box,
+    Typography,
+    Grid,
+    Card,
+    CardContent,
+    IconButton,
+    CardActions,
+    Chip,
+    Avatar,
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -50,7 +60,34 @@ const CommentCard = ({
                         <Box className={classes.content}>
                             <Typography variant="body1">{body}</Typography>
                         </Box>
+                        <Box className={classes.editControls}>
+                            <IconButton>
+                                <FontAwesomeIcon icon="chevron-down" />
+                            </IconButton>
+                        </Box>
                     </Box>
+                    <CardActions>
+                        <Chip
+                            className={classes.chip}
+                            size="small"
+                            avatar={
+                                <Avatar>
+                                    <FontAwesomeIcon icon="user" />
+                                </Avatar>
+                            }
+                            label={author}
+                        />
+                        <Chip
+                            className={classes.chip}
+                            size="small"
+                            avatar={
+                                <Avatar>
+                                    <FontAwesomeIcon icon="calendar" />
+                                </Avatar>
+                            }
+                            label={new Date(timestamp).toLocaleDateString()}
+                        />
+                    </CardActions>
                 </Box>
             </Card>
         </Grid>

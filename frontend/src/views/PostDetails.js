@@ -22,8 +22,6 @@ const PostDetails = ({ dispatch, match, posts, comments }) => {
     // Find the first post that matches our ID
     const post = posts ? posts.filter(post => post.id === postId)[0] : null
 
-    console.log(post)
-
     return (
         <Box>
             <PostCard {...post} />
