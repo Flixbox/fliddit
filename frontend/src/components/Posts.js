@@ -45,7 +45,7 @@ const Posts = ({ posts }) => {
             {shouldDisplay &&
                 Object.keys(posts)
                     .sort(postSort)
-                    .map(id => <PostCard {...posts[id]} key={id} />)}
+                    .map(id => <PostCard {...posts[id]} key={id} linkingCard={true} />)}
         </Grid>
     )
 }

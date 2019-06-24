@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import {
     Grid,
@@ -11,6 +11,7 @@ import {
     IconButton,
     CardActions,
     TextField,
+    InputBase,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
@@ -40,10 +41,14 @@ const useStyles = makeStyles(theme => ({
     chip: {
         marginRight: theme.spacing(1),
     },
+    disabledInput: {
+        color: 'white',
+    },
 }))
 
 const PostCard = ({
     dispatch,
+    linkingCard,
     author,
     body,
     category,
@@ -55,8 +60,14 @@ const PostCard = ({
     voteScore,
 }) => {
     const classes = useStyles()
-    const [title, setTitle] = useState(titleProp)
+    const [title, setTitle] = useState('Loading...')
+    const [editMode, setEditMode] = useState(false)
 
+    useEffect(() => {
+        titleProp && setTitle(titleProp)
+    }, [titleProp])
+
+    console.log(titleProp)
     if (deleted) return null
     return (
         <Grid item xs={12} lg={6}>
@@ -70,12 +81,20 @@ const PostCard = ({
                                 downvote={() => dispatch(vote({ id, option: 'downVote' }))}
                             />
                         </Box>
-                        <Box className={classes.content} component={Link} to={`/${category}/${id}`}>
-                            <TextField
+                        <Box
+                            className={classes.content}
+                            component={linkingCard ? Link : Box}
+                            to={linkingCard && `/${category}/${id}`}
+                        >
+                            <InputBase
                                 id="title"
                                 value={title}
                                 onChange={e => setTitle(e.target.value)}
                                 fullWidth
+                                disabled={editMode ? false : true}
+                                classes={{
+                                    disabled: classes.disabledInput,
+                                }}
                             />
                             <Typography variant="subtitle1" color="textSecondary">
                                 {body}
