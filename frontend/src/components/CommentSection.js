@@ -11,11 +11,11 @@ const CommentSection = ({ comments }) => {
     const classes = useStyles()
 
     return (
-        <>
+        <Box>
             {comments.map(comment => (
                 <CommentCard {...comment} />
             ))}
-        </>
+        </Box>
     )
 }
 
