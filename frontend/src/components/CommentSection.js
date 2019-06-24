@@ -13,7 +13,9 @@ const CommentSection = ({ comments }) => {
     return (
         <Box>
             {comments.map(comment => (
-                <CommentCard {...comment} />
+                <Box mt={1}>
+                    <CommentCard {...comment} />
+                </Box>
             ))}
         </Box>
     )

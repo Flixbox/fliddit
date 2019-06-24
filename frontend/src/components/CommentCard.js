@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography, Grid, Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -35,7 +35,20 @@ const CommentCard = ({
     const classes = useStyles()
 
     if (deleted) return null
-    return <Typography>I am a comment!</Typography>
+    return (
+        <Grid item xs={12} lg={6}>
+            <Card>
+                <Box className={classes.details}>
+                    <Box className={classes.top}>
+                        <Box className={classes.voteControls}>
+                            <FontAwesomeIcon icon="arrow-circle-up" />
+                            <FontAwesomeIcon icon="arrow-circle-down" />
+                        </Box>
+                    </Box>
+                </Box>
+            </Card>
+        </Grid>
+    )
 }
 
 export default CommentCard
