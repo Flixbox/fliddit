@@ -28,7 +28,7 @@ const PostCard = ({
     const classes = useStyles()
     if (deleted) return null
     return (
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} lg={6}>
             <Card className={classes.card}>
                 <Box className={classes.details}>
                     <Box className={classes.controls}>
