@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { loadCommentSection } from '../actions/comments'
-import { PostCard } from '../components'
+import { PostCard, CommentSection } from '../components'
 
 const useStyles = makeStyles(theme => ({}))
 
@@ -27,6 +27,7 @@ const PostDetails = ({ dispatch, match, posts, comments }) => {
     return (
         <Box>
             <PostCard {...post} />
+            <CommentSection comments={comments} />
         </Box>
     )
 }
