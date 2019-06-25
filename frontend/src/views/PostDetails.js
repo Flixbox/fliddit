@@ -25,12 +25,13 @@ const PostDetails = ({ dispatch, match, post, comments }) => {
     return (
         <Box>
             {post ? (
-                <PostCard {...post} />
+                <>
+                    <PostCard {...post} />
+                    <CommentSection comments={comments} />
+                </>
             ) : (
                 <Typography>No post found! It pay have been deleted.</Typography>
             )}
-
-            <CommentSection comments={comments} />
         </Box>
     )
 }
