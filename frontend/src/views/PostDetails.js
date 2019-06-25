@@ -30,7 +30,7 @@ const PostDetails = ({ dispatch, match, post, comments }) => {
                     <CommentSection comments={comments} />
                 </>
             ) : (
-                <Typography>No post found! It pay have been deleted.</Typography>
+                <Typography>No post found! It may have been deleted.</Typography>
             )}
         </Box>
     )
