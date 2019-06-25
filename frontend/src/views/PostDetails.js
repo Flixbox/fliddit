@@ -11,8 +11,8 @@ import { PostCard, CommentSection } from '../components'
 
 const useStyles = makeStyles(theme => ({}))
 
-const PostDetails = ({ dispatch, match, posts, comments }) => {
-    const { category, postId } = match.params
+const PostDetails = ({ dispatch, match, post, comments }) => {
+    const { postId } = match.params
 
     // Does not rerender on delete
     console.log('Rerender PostDetails')
@@ -21,9 +21,6 @@ const PostDetails = ({ dispatch, match, posts, comments }) => {
         const load = () => dispatch(loadCommentSection({ postId }))
         load()
     }, [postId, dispatch])
-
-    // Find the first post that matches our ID
-    const post = posts ? posts.filter(post => post.id === postId)[0] : null
 
     return (
         <Box>
@@ -35,6 +32,14 @@ const PostDetails = ({ dispatch, match, posts, comments }) => {
 }
 
 // TODO Move my filter stuff down here
-const mapStateToProps = ({ comments, posts, dispatch }) => ({ comments, posts, dispatch })
+const mapStateToProps = ({ comments, posts, dispatch }, { match }) => {
+    const { postId } = match.params
+    return {
+        comments,
+        // Find the first post that matches our ID
+        post: posts ? posts.filter(post => post.id === postId)[0] : null,
+        dispatch,
+    }
+}
 
 export default connect(mapStateToProps)(withRouter(PostDetails))
