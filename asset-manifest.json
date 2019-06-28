@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/fliddit/static/js/main.f96ef6e9.chunk.js",
-    "main.js.map": "/fliddit/static/js/main.f96ef6e9.chunk.js.map",
+    "main.js": "/fliddit/static/js/main.e4c9bfc3.chunk.js",
+    "main.js.map": "/fliddit/static/js/main.e4c9bfc3.chunk.js.map",
     "runtime~main.js": "/fliddit/static/js/runtime~main.a2badd95.js",
     "runtime~main.js.map": "/fliddit/static/js/runtime~main.a2badd95.js.map",
-    "static/js/2.9c4edf72.chunk.js": "/fliddit/static/js/2.9c4edf72.chunk.js",
-    "static/js/2.9c4edf72.chunk.js.map": "/fliddit/static/js/2.9c4edf72.chunk.js.map",
+    "static/js/2.c9e51abc.chunk.js": "/fliddit/static/js/2.c9e51abc.chunk.js",
+    "static/js/2.c9e51abc.chunk.js.map": "/fliddit/static/js/2.c9e51abc.chunk.js.map",
     "index.html": "/fliddit/index.html",
-    "precache-manifest.d3c4aa54133130cdcd0a6a2b4a7b0232.js": "/fliddit/precache-manifest.d3c4aa54133130cdcd0a6a2b4a7b0232.js",
+    "precache-manifest.cc72a850d06f638b9e7b490e31eb89bb.js": "/fliddit/precache-manifest.cc72a850d06f638b9e7b490e31eb89bb.js",
     "service-worker.js": "/fliddit/service-worker.js"
   }
 }

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/fliddit/precache-manifest.d3c4aa54133130cdcd0a6a2b4a7b0232.js"
+  "/fliddit/precache-manifest.cc72a850d06f638b9e7b490e31eb89bb.js"
 );
 
 self.addEventListener('message', (event) => {
