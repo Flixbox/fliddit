@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const Posts = ({ dispatch, posts, categories }) => {
+const Posts = ({ dispatch, posts, categories, category }) => {
     const classes = useStyles()
     const [sorting, setSorting] = useState({
         direction: 'desc',
@@ -34,11 +34,11 @@ const Posts = ({ dispatch, posts, categories }) => {
     })
     const [body, setBody] = useState('')
     const [title, setTitle] = useState('')
-    const [category, setCategory] = useState('')
+    const [newPostCategory, setNewPostCategory] = useState(category)
     const reset = () => {
         setTitle('')
         setBody('')
-        setCategory(null)
+        setNewPostCategory(category)
     }
 
     const postSort = (aId, bId) => {
@@ -90,7 +90,7 @@ const Posts = ({ dispatch, posts, categories }) => {
                 <Box mt={1}>
                     <AddElementCard
                         onSubmit={() => {
-                            dispatch(addPost({ title, body, category }))
+                            dispatch(addPost({ title, body, newPostCategory }))
                             reset()
                         }}
                     >
@@ -111,8 +111,8 @@ const Posts = ({ dispatch, posts, categories }) => {
                         <FormControl className={classes.formControl}>
                             <InputLabel htmlFor="category">Category</InputLabel>
                             <Select
-                                value={category}
-                                onChange={e => setCategory(e.target.value)}
+                                value={newPostCategory}
+                                onChange={e => setNewPostCategory(e.target.value)}
                                 inputProps={{
                                     id: 'category',
                                 }}
