@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Box, Card, IconButton, Button, Typography } from '@material-ui/core'
+import { Box, Card, Button, Typography } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
