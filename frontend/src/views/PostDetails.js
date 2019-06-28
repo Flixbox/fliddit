@@ -19,7 +19,7 @@ const PostDetails = ({ dispatch, match, post, comments }) => {
             {post ? (
                 <>
                     <PostCard {...post} />
-                    <CommentSection comments={comments} />
+                    <CommentSection comments={comments} postId={postId} />
                 </>
             ) : (
                 <Typography>No post found! It may have been deleted.</Typography>
