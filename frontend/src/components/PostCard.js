@@ -58,7 +58,6 @@ const PostCard = ({
         reset({ title: titleProp, body: bodyProp })
     }, [titleProp, bodyProp])
 
-    console.log(titleProp)
     if (deleted) return null
     return (
         <Card>

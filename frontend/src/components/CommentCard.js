@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Box, Typography, Card, IconButton, CardActions, Chip, Avatar } from '@material-ui/core'
+import { Box, Typography, Card, CardActions, Chip, Avatar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { VoteControls } from '.'
-import { vote } from '../actions/comments'
+import { VoteControls, EditControls } from '.'
+import { vote, editComment, deleteComment } from '../actions/comments'
 
 const useStyles = makeStyles(theme => ({
     details: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 const CommentCard = ({
     dispatch,
     author,
-    body,
+    body: bodyProp,
     deleted,
     id,
     parentDeleted,
@@ -40,6 +40,17 @@ const CommentCard = ({
     voteScore,
 }) => {
     const classes = useStyles()
+
+    const [body, setBody] = useState('Loading body...')
+    const [editMode, setEditMode] = useState(false)
+
+    const reset = ({ body }) => {
+        body && setBody(body)
+    }
+
+    useEffect(() => {
+        reset({ body: bodyProp })
+    }, [bodyProp])
 
     if (deleted) return null
     return (
@@ -56,11 +67,19 @@ const CommentCard = ({
                     <Box className={classes.content}>
                         <Typography variant="body1">{body}</Typography>
                     </Box>
-                    <Box className={classes.editControls}>
-                        <IconButton>
-                            <FontAwesomeIcon icon="chevron-down" />
-                        </IconButton>
-                    </Box>
+                    <EditControls
+                        editMode={editMode}
+                        onSaveClick={() => {
+                            setEditMode(false)
+                            dispatch(editComment({ id, body }))
+                        }}
+                        onCancelClick={() => {
+                            setEditMode(false)
+                            reset({ body: bodyProp })
+                        }}
+                        onEditClick={() => setEditMode(true)}
+                        onTrashClick={() => dispatch(deleteComment({ id }))}
+                    />
                 </Box>
                 <CardActions>
                     <Chip

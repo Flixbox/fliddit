@@ -9,9 +9,6 @@ import { PostCard, CommentSection } from '../components'
 const PostDetails = ({ dispatch, match, post, comments }) => {
     const { postId } = match.params
 
-    // Does not rerender on delete
-    console.log('Rerender PostDetails')
-
     useEffect(() => {
         const load = () => dispatch(loadCommentSection({ postId }))
         load()
