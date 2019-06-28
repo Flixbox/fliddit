@@ -4,14 +4,14 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import Axios from 'axios'
 import axiosMiddleware from 'redux-axios-middleware'
 
-const server = 'http://localhost:3001'
+import { server, user } from '../helpers/config'
 
 const client = Axios.create({
     //all axios can be used, shown in axios documentation
     baseURL: `${server}`,
     responseType: 'json',
     headers: {
-        Authorization: 'A Fliddit user',
+        Authorization: user,
         Accept: 'application/json',
     },
 })

@@ -1,5 +1,10 @@
+import { v4 as uuid } from 'uuid'
+
+import { server, user } from '../helpers/config'
+
 export const LOAD_COMMENT_SECTION = 'LOAD_COMMENT_SECTION'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
+export const ADD_COMMENT = 'ADD_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 
@@ -25,6 +30,25 @@ export function vote({ id, option }) {
                 data: {
                     id,
                     option,
+                },
+            },
+        },
+    }
+}
+
+export function addComment({ body, parentId }) {
+    return {
+        type: ADD_COMMENT,
+        payload: {
+            request: {
+                method: 'POST',
+                url: `/comments`,
+                data: {
+                    id: uuid(),
+                    timestamp: new Date(),
+                    body,
+                    author: user,
+                    parentId,
                 },
             },
         },
