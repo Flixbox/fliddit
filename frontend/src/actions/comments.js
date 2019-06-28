@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid'
 
-import { server, user } from '../helpers/config'
+import { user } from '../helpers/config'
 
 export const LOAD_COMMENT_SECTION = 'LOAD_COMMENT_SECTION'
 export const VOTE_COMMENT = 'VOTE_COMMENT'

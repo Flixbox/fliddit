@@ -1,5 +1,10 @@
+import { v4 as uuid } from 'uuid'
+
+import { user } from '../helpers/config'
+
 export const LOAD_POSTS = 'LOAD_POSTS'
 export const VOTE_POST = 'VOTE_POST'
+export const ADD_POST = 'ADD_POST'
 export const EDIT_POST = 'EDIT_POST'
 export const DELETE_POST = 'DELETE_POST'
 
@@ -24,6 +29,26 @@ export function vote({ id, option }) {
                 data: {
                     id,
                     option,
+                },
+            },
+        },
+    }
+}
+
+export function addPost({ title, body, category }) {
+    return {
+        type: ADD_POST,
+        payload: {
+            request: {
+                method: 'POST',
+                url: `/posts`,
+                data: {
+                    id: uuid(),
+                    timestamp: new Date(),
+                    title,
+                    body,
+                    author: user,
+                    category,
                 },
             },
         },
