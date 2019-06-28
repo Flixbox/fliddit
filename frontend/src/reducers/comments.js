@@ -6,6 +6,14 @@ import {
     DELETE_COMMENT,
 } from '../actions/comments'
 
+const deleteComment = (state, data) => {
+    if (!state) return null
+    const { id } = data
+    const result = [...state]
+    state.map((comment, index) => comment.id === id && result.splice(index, 1))
+    return result
+}
+
 export default (state = [], action) => {
     switch (action.type) {
         case `${LOAD_COMMENT_SECTION}_SUCCESS`:
@@ -29,6 +37,8 @@ export default (state = [], action) => {
             const commentData = action.payload.request.data
             return [...state, { ...commentData, voteScore: 1 }]
         }
+        case `${ADD_COMMENT}_FAIL`:
+            return deleteComment(state, action.meta.previousAction.payload.request.data)
         case EDIT_COMMENT: {
             if (!state) return null
             const { id, body } = action.payload.request.data
@@ -42,13 +52,8 @@ export default (state = [], action) => {
                 return comment
             })
         }
-        case DELETE_COMMENT: {
-            if (!state) return null
-            const { id } = action.payload.request.data
-            const result = [...state]
-            state.map((comment, index) => comment.id === id && result.splice(index, 1))
-            return result
-        }
+        case DELETE_COMMENT:
+            return deleteComment(state, action.payload.request.data)
         default:
             return state
     }
