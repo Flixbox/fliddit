@@ -96,16 +96,16 @@ const PostCard = ({
                     </Box>
                     <EditControls
                         editMode={editMode}
-                        onSaveClick={() => {
+                        onSave={() => {
                             setEditMode(false)
                             dispatch(editPost({ id, title, body }))
                         }}
-                        onCancelClick={() => {
+                        onCancel={() => {
                             setEditMode(false)
                             reset({ title: titleProp, body: bodyProp })
                         }}
-                        onEditClick={() => setEditMode(true)}
-                        onTrashClick={() => dispatch(deletePost({ id }))}
+                        onEdit={() => setEditMode(true)}
+                        onTrash={() => dispatch(deletePost({ id }))}
                     />
                 </Box>
                 <CardActions>

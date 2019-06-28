@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@material-ui/core'
 
-import CommentCard from './CommentCard'
+import { AddElementCard, CommentCard } from '.'
 
 const CommentSection = ({ comments }) => {
     return (
@@ -11,6 +11,9 @@ const CommentSection = ({ comments }) => {
                     <CommentCard {...comment} />
                 </Box>
             ))}
+            <Box mt={1}>
+                <AddElementCard />
+            </Box>
         </Box>
     )
 }

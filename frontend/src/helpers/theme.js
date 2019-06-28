@@ -14,6 +14,7 @@ import {
     faTrash,
     faSave,
     faWindowClose,
+    faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -27,7 +28,8 @@ library.add(
     faEdit,
     faTrash,
     faSave,
-    faWindowClose
+    faWindowClose,
+    faPaperPlane
 )
 
 export const navWidth = 200

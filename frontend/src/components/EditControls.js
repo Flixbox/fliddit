@@ -13,25 +13,25 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const EditControls = ({ editMode, onSaveClick, onCancelClick, onEditClick, onTrashClick }) => {
+const EditControls = ({ editMode, onSave, onCancel, onEdit, onTrash }) => {
     const classes = useStyles()
     return (
         <Box className={classes.editControls}>
             {editMode ? (
                 <>
-                    <IconButton onClick={onSaveClick}>
+                    <IconButton onClick={onSave}>
                         <FontAwesomeIcon icon="save" />
                     </IconButton>
-                    <IconButton onClick={onCancelClick}>
+                    <IconButton onClick={onCancel}>
                         <FontAwesomeIcon icon="window-close" />
                     </IconButton>
                 </>
             ) : (
                 <>
-                    <IconButton onClick={onEditClick}>
+                    <IconButton onClick={onEdit}>
                         <FontAwesomeIcon icon="edit" />
                     </IconButton>
-                    <IconButton onClick={onTrashClick}>
+                    <IconButton onClick={onTrash}>
                         <FontAwesomeIcon icon="trash" />
                     </IconButton>
                 </>

@@ -74,16 +74,16 @@ const CommentCard = ({
                     </Box>
                     <EditControls
                         editMode={editMode}
-                        onSaveClick={() => {
+                        onSave={() => {
                             setEditMode(false)
                             dispatch(editComment({ id, body }))
                         }}
-                        onCancelClick={() => {
+                        onCancel={() => {
                             setEditMode(false)
                             reset({ body: bodyProp })
                         }}
-                        onEditClick={() => setEditMode(true)}
-                        onTrashClick={() => dispatch(deleteComment({ id }))}
+                        onEdit={() => setEditMode(true)}
+                        onTrash={() => dispatch(deleteComment({ id }))}
                     />
                 </Box>
                 <CardActions>
