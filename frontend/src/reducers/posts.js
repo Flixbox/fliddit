@@ -1,4 +1,4 @@
-import { LOAD_POSTS, VOTE_POST, EDIT_POST, DELETE_POST } from '../actions/posts'
+import { LOAD_POSTS, VOTE_POST, EDIT_POST, DELETE_POST, ADD_POST } from '../actions/posts'
 
 export default (state = [], action) => {
     switch (action.type) {
@@ -18,6 +18,10 @@ export default (state = [], action) => {
                 }
                 return post
             })
+        }
+        case ADD_POST: {
+            const postData = action.payload.request.data
+            return [...state, { ...postData, voteScore: 1 }]
         }
         case EDIT_POST: {
             if (!state) return null
