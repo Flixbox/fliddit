@@ -34,7 +34,6 @@ const Posts = ({ dispatch, posts, categories, category }) => {
     })
     const [body, setBody] = useState('')
     const [title, setTitle] = useState('')
-    console.log(category)
     const [newPostCategory, setNewPostCategory] = useState(category)
     const reset = () => {
         setTitle('')
@@ -112,21 +111,23 @@ const Posts = ({ dispatch, posts, categories, category }) => {
                         />
                         <FormControl className={classes.formControl}>
                             <InputLabel htmlFor="category">Category</InputLabel>
-                            <Select
-                                value={newPostCategory}
-                                onChange={e => setNewPostCategory(e.target.value)}
-                                inputProps={{
-                                    id: 'category',
-                                }}
-                                autoWidth
-                                style={{ minWidth: 'fit-content' }}
-                            >
-                                {categories.map(category => (
-                                    <MenuItem value={category.path} key={category.path}>
-                                        {category.name}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+                            {newPostCategory && (
+                                <Select
+                                    value={newPostCategory}
+                                    onChange={e => setNewPostCategory(e.target.value)}
+                                    inputProps={{
+                                        id: 'category',
+                                    }}
+                                    autoWidth
+                                    style={{ minWidth: 'fit-content' }}
+                                >
+                                    {categories.map(category => (
+                                        <MenuItem value={category.path} key={category.path}>
+                                            {category.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            )}
                         </FormControl>
                     </AddElementCard>
                 </Box>

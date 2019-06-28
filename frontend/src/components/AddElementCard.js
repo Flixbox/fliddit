@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Box, Card, IconButton } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Box, Card, IconButton, Button, Typography } from '@material-ui/core'
+import { makeStyles, useTheme } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -17,18 +17,33 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(1),
         width: '100%',
     },
+    icon: {
+        margin: theme.spacing(1),
+    },
 }))
 
-const AddElementCard = ({ children, onSubmit }) => {
+const AddElementCard = ({ children, retryMode = true, onSubmit, onRetry }) => {
     const classes = useStyles()
+    const theme = useTheme()
     return (
         <Card>
             <Box className={classes.details}>
                 <Box className={classes.content}>{children}</Box>
-                <Box className={classes.editControls}>
-                    <IconButton onClick={onSubmit}>
-                        <FontAwesomeIcon icon="paper-plane" />
-                    </IconButton>
+                <Box className={classes.editControls} m={1}>
+                    {retryMode && (
+                        <Button onClick={onRetry}>
+                            <Typography color="error">Retry?</Typography>
+                            <FontAwesomeIcon
+                                icon="sync"
+                                className={classes.icon}
+                                color={theme.palette.error.main}
+                            />
+                        </Button>
+                    )}
+                    <Button onClick={onSubmit}>
+                        Add
+                        <FontAwesomeIcon icon="paper-plane" className={classes.icon} />
+                    </Button>
                 </Box>
             </Box>
         </Card>
