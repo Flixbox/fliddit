@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Typography, Card, Chip, Avatar, Box, CardActions, InputBase } from '@material-ui/core'
+import { Typography, Card, Chip, Avatar, Box, CardActions, Input } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -84,7 +84,7 @@ const PostCard = ({
                             </>
                         ) : (
                             <>
-                                <InputBase
+                                <Input
                                     id="title"
                                     value={title}
                                     onChange={e => setTitle(e.target.value)}
@@ -94,7 +94,7 @@ const PostCard = ({
                                         disabled: classes.disabledInput,
                                     }}
                                 />
-                                <InputBase
+                                <Input
                                     id="body"
                                     value={body}
                                     onChange={e => setBody(e.target.value)}

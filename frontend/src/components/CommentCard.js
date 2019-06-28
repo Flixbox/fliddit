@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Box, Typography, Card, CardActions, Chip, Avatar } from '@material-ui/core'
+import { Box, Typography, Card, CardActions, Chip, Avatar, Input } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
     },
     content: {
         padding: theme.spacing(1),
+        width: '100%',
     },
     chip: {
         marginRight: theme.spacing(1),
@@ -65,7 +66,24 @@ const CommentCard = ({
                         />
                     </Box>
                     <Box className={classes.content}>
-                        <Typography variant="body1">{body}</Typography>
+                        {!editMode ? (
+                            <>
+                                <Typography variant="subtitle1">{body}</Typography>
+                            </>
+                        ) : (
+                            <>
+                                <Input
+                                    id="body"
+                                    value={body}
+                                    onChange={e => setBody(e.target.value)}
+                                    fullWidth
+                                    disabled={editMode ? false : true}
+                                    classes={{
+                                        disabled: classes.disabledInput,
+                                    }}
+                                />
+                            </>
+                        )}
                     </Box>
                     <EditControls
                         editMode={editMode}
