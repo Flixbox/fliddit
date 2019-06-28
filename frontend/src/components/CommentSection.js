@@ -3,11 +3,19 @@ import { connect } from 'react-redux'
 import { Box, Input } from '@material-ui/core'
 
 import { AddElementCard, CommentCard } from '.'
-import { addComment } from '../actions/comments'
+import { addComment, ADD_COMMENT } from '../actions/comments'
 
 const CommentSection = ({ dispatch, comments, postId }) => {
     const [body, setBody] = useState('')
+    const [retryMode, setRetryMode] = useState(false)
     const reset = () => setBody('')
+    const submitData = () => {
+        if (!body) return null
+        // Only reset the form if we are successful
+        dispatch(addComment({ body, parentId: postId })).then(({ type }) =>
+            type === `${ADD_COMMENT}_SUCCESS` ? reset() : setRetryMode(true)
+        )
+    }
     return (
         <Box>
             {comments.map(comment => (
@@ -16,13 +24,7 @@ const CommentSection = ({ dispatch, comments, postId }) => {
                 </Box>
             ))}
             <Box mt={1}>
-                <AddElementCard
-                    onSubmit={() => {
-                        if (!body) return null
-                        dispatch(addComment({ body, parentId: postId }))
-                        reset()
-                    }}
-                >
+                <AddElementCard onSubmit={submitData} retryMode={retryMode} onRetry={submitData}>
                     <Input
                         fullWidth
                         value={body}

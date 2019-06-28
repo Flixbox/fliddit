@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const AddElementCard = ({ children, retryMode = true, onSubmit, onRetry }) => {
+const AddElementCard = ({ children, retryMode, onSubmit, onRetry }) => {
     const classes = useStyles()
     const theme = useTheme()
     return (
