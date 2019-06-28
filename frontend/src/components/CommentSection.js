@@ -18,6 +18,7 @@ const CommentSection = ({ dispatch, comments, postId }) => {
             <Box mt={1}>
                 <AddElementCard
                     onSubmit={() => {
+                        if (!body) return null
                         dispatch(addComment({ body, parentId: postId }))
                         reset()
                     }}

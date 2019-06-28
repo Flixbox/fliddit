@@ -91,6 +91,7 @@ const Posts = ({ dispatch, posts, categories, category }) => {
                 <Box mt={1}>
                     <AddElementCard
                         onSubmit={() => {
+                            if (!title || !body) return null
                             dispatch(addPost({ title, body, category: newPostCategory }))
                             reset()
                         }}
