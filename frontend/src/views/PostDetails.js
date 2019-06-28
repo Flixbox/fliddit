@@ -2,14 +2,9 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Box, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { loadCommentSection } from '../actions/comments'
 import { PostCard, CommentSection } from '../components'
-
-const useStyles = makeStyles(theme => ({}))
 
 const PostDetails = ({ dispatch, match, post, comments }) => {
     const { postId } = match.params

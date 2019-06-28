@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import {
-    Grid,
-    Typography,
-    Card,
-    CardContent,
-    Chip,
-    Avatar,
-    Box,
-    IconButton,
-    CardActions,
-    TextField,
-    InputBase,
-} from '@material-ui/core'
+import { Typography, Card, Chip, Avatar, Box, CardActions, InputBase } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -30,12 +18,6 @@ const useStyles = makeStyles(theme => ({
     top: {
         display: 'flex',
         flexDirection: 'row',
-    },
-    editControls: {
-        marginLeft: 'auto',
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'start',
     },
     content: {
         padding: theme.spacing(1),
