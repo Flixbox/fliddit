@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import {
     Grid,
@@ -26,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const Posts = ({ dispatch, posts, categories, category }) => {
+const Posts = ({ dispatch, match, posts, categories, category }) => {
     const classes = useStyles()
     const [sorting, setSorting] = useState({
         direction: 'desc',
@@ -40,6 +41,14 @@ const Posts = ({ dispatch, posts, categories, category }) => {
         setBody('')
         setNewPostCategory(category)
     }
+
+    useEffect(() => {
+        if (!newPostCategory) {
+            if (match.params.category) {
+                setNewPostCategory(match.params.category)
+            } else if (categories[0]) setNewPostCategory(categories[0].name)
+        }
+    }, [newPostCategory, categories, match.params.category])
 
     const postSort = (aId, bId) => {
         const { direction, field } = sorting
@@ -167,4 +176,4 @@ const SortButton = ({ field, sortClick, sorting }) => {
 
 const mapStateToProps = ({ categories, dispatch }) => ({ categories, dispatch })
 
-export default connect(mapStateToProps)(Posts)
+export default connect(mapStateToProps)(withRouter(Posts))
