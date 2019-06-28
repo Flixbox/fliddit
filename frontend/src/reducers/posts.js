@@ -31,6 +31,8 @@ export default (state = [], action) => {
             const postData = action.payload.request.data
             return [...state, { ...postData, voteScore: 1 }]
         }
+        case `${ADD_POST}_FAIL`:
+            return deletePost(state, action.meta.previousAction.payload.request.data)
         case EDIT_POST: {
             if (!state) return null
             const { id, title, body } = action.payload.request.data
