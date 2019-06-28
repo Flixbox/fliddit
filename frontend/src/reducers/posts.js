@@ -1,5 +1,13 @@
 import { LOAD_POSTS, VOTE_POST, EDIT_POST, DELETE_POST, ADD_POST } from '../actions/posts'
 
+const deletePost = (state, data) => {
+    if (!state) return null
+    const { id } = data
+    const result = [...state]
+    state.map((post, index) => post.id === id && result.splice(index, 1))
+    return result
+}
+
 export default (state = [], action) => {
     switch (action.type) {
         case `${LOAD_POSTS}_SUCCESS`:
@@ -38,11 +46,7 @@ export default (state = [], action) => {
             })
         }
         case DELETE_POST:
-            if (!state) return null
-            const { id } = action.payload.request.data
-            const result = [...state]
-            state.map((post, index) => post.id === id && result.splice(index, 1))
-            return result
+            return deletePost(state, action.payload.request.data)
         default:
             return state
     }
