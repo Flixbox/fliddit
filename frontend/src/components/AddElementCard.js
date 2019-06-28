@@ -20,10 +20,6 @@ import { vote, editComment, deleteComment } from '../actions/comments'
 const useStyles = makeStyles(theme => ({
     details: {
         display: 'flex',
-        flexDirection: 'column',
-    },
-    top: {
-        display: 'flex',
         flexDirection: 'row',
     },
     editControls: {
@@ -40,15 +36,12 @@ const AddElementCard = ({ children, onSubmit }) => {
     return (
         <Card>
             <Box className={classes.details}>
-                <Box className={classes.top}>
-                    <Box className={classes.voteControlsPlaceholder} ml={5}></Box>
-                    <Box className={classes.editControls}>
-                        <IconButton onClick={onSubmit}>
-                            <FontAwesomeIcon icon="paper-plane" />
-                        </IconButton>
-                    </Box>
-                </Box>
                 <Box className={classes.content}>{children}</Box>
+                <Box className={classes.editControls}>
+                    <IconButton onClick={onSubmit}>
+                        <FontAwesomeIcon icon="paper-plane" />
+                    </IconButton>
+                </Box>
             </Box>
         </Card>
     )

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Box } from '@material-ui/core'
+import React, { useState } from 'react'
+import { Box, Input } from '@material-ui/core'
 
 import { AddElementCard, CommentCard } from '.'
 
@@ -12,7 +12,9 @@ const CommentSection = ({ comments }) => {
                 </Box>
             ))}
             <Box mt={1}>
-                <AddElementCard />
+                <AddElementCard>
+                    <Input fullWidth />
+                </AddElementCard>
             </Box>
         </Box>
     )
