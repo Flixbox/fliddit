@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { Link } from 'react-router-dom'
 
-import { VoteControls } from '.'
+import { VoteControls, EditControls } from '.'
 import { vote, editPost, deletePost } from '../actions/posts'
 
 const useStyles = makeStyles(theme => ({
@@ -126,37 +126,19 @@ const PostCard = ({
                             </>
                         )}
                     </Box>
-                    <Box className={classes.editControls}>
-                        {editMode ? (
-                            <>
-                                <IconButton
-                                    onClick={() => {
-                                        setEditMode(false)
-                                        dispatch(editPost({ id, title, body }))
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon="save" />
-                                </IconButton>
-                                <IconButton
-                                    onClick={() => {
-                                        setEditMode(false)
-                                        reset({ title: titleProp, body: bodyProp })
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon="window-close" />
-                                </IconButton>
-                            </>
-                        ) : (
-                            <>
-                                <IconButton onClick={() => setEditMode(true)}>
-                                    <FontAwesomeIcon icon="edit" />
-                                </IconButton>
-                                <IconButton onClick={() => dispatch(deletePost({ id }))}>
-                                    <FontAwesomeIcon icon="trash" />
-                                </IconButton>
-                            </>
-                        )}
-                    </Box>
+                    <EditControls
+                        editMode={editMode}
+                        onSaveClick={() => {
+                            setEditMode(false)
+                            dispatch(editPost({ id, title, body }))
+                        }}
+                        onCancelClick={() => {
+                            setEditMode(false)
+                            reset({ title: titleProp, body: bodyProp })
+                        }}
+                        onEditClick={() => setEditMode(true)}
+                        onTrashClick={() => dispatch(deletePost({ id }))}
+                    />
                 </Box>
                 <CardActions>
                     <Chip

@@ -7,6 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const useStyles = makeStyles(theme => ({
     editControls: {
         marginLeft: 'auto',
+        display: 'flex',
+        flexDirection: 'row',
+        height: 'fit-content',
     },
 }))
 
@@ -36,3 +39,5 @@ const EditControls = ({ editMode, onSaveClick, onCancelClick, onEditClick, onTra
         </Box>
     )
 }
+
+export default EditControls
