@@ -67,22 +67,9 @@ const CommentCard = ({
                     </Box>
                     <Box className={classes.content}>
                         {!editMode ? (
-                            <>
-                                <Typography variant="subtitle1">{body}</Typography>
-                            </>
+                            <Typography variant="subtitle1">{body}</Typography>
                         ) : (
-                            <>
-                                <Input
-                                    id="body"
-                                    value={body}
-                                    onChange={e => setBody(e.target.value)}
-                                    fullWidth
-                                    disabled={editMode ? false : true}
-                                    classes={{
-                                        disabled: classes.disabledInput,
-                                    }}
-                                />
-                            </>
+                            <Input value={body} onChange={e => setBody(e.target.value)} fullWidth />
                         )}
                     </Box>
                     <EditControls

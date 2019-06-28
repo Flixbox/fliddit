@@ -26,9 +26,6 @@ const useStyles = makeStyles(theme => ({
     chip: {
         marginRight: theme.spacing(1),
     },
-    disabledInput: {
-        color: 'white',
-    },
 }))
 
 const PostCard = ({
@@ -85,24 +82,14 @@ const PostCard = ({
                         ) : (
                             <>
                                 <Input
-                                    id="title"
                                     value={title}
                                     onChange={e => setTitle(e.target.value)}
                                     fullWidth
-                                    disabled={editMode ? false : true}
-                                    classes={{
-                                        disabled: classes.disabledInput,
-                                    }}
                                 />
                                 <Input
-                                    id="body"
                                     value={body}
                                     onChange={e => setBody(e.target.value)}
                                     fullWidth
-                                    disabled={editMode ? false : true}
-                                    classes={{
-                                        disabled: classes.disabledInput,
-                                    }}
                                 />
                             </>
                         )}
