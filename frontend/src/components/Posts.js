@@ -34,6 +34,7 @@ const Posts = ({ dispatch, posts, categories, category }) => {
     })
     const [body, setBody] = useState('')
     const [title, setTitle] = useState('')
+    console.log(category)
     const [newPostCategory, setNewPostCategory] = useState(category)
     const reset = () => {
         setTitle('')
@@ -90,7 +91,7 @@ const Posts = ({ dispatch, posts, categories, category }) => {
                 <Box mt={1}>
                     <AddElementCard
                         onSubmit={() => {
-                            dispatch(addPost({ title, body, newPostCategory }))
+                            dispatch(addPost({ title, body, category: newPostCategory }))
                             reset()
                         }}
                     >
