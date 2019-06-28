@@ -1,6 +1,7 @@
 import {
     LOAD_COMMENT_SECTION,
     VOTE_COMMENT,
+    ADD_COMMENT,
     EDIT_COMMENT,
     DELETE_COMMENT,
 } from '../actions/comments'
@@ -24,6 +25,10 @@ export default (state = [], action) => {
                 }
                 return comment
             })
+        case ADD_COMMENT: {
+            const commentData = action.payload.request.data
+            return [...state, { ...commentData, voteScore: 1 }]
+        }
         case EDIT_COMMENT: {
             if (!state) return null
             const { id, body } = action.payload.request.data
