@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, IconButton } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Box, Button, Typography } from '@material-ui/core'
+import { makeStyles, useTheme } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -11,29 +11,47 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         height: 'fit-content',
     },
+    icon: {
+        margin: theme.spacing(1),
+    },
 }))
 
-const EditControls = ({ editMode, onSave, onCancel, onEdit, onTrash }) => {
+const EditControls = ({ editMode, retryMode, onSave, onCancel, onEdit, onTrash, onRetry }) => {
     const classes = useStyles()
+    const theme = useTheme()
     return (
-        <Box className={classes.editControls}>
+        <Box className={classes.editControls} m={1}>
+            {retryMode && (
+                <Button onClick={onRetry}>
+                    <Typography color="error">Retry?</Typography>
+                    <FontAwesomeIcon
+                        icon="sync"
+                        className={classes.icon}
+                        color={theme.palette.error.main}
+                    />
+                </Button>
+            )}
             {editMode ? (
                 <>
-                    <IconButton onClick={onSave}>
-                        <FontAwesomeIcon icon="save" />
-                    </IconButton>
-                    <IconButton onClick={onCancel}>
-                        <FontAwesomeIcon icon="window-close" />
-                    </IconButton>
+                    <Button onClick={onSave}>
+                        Save
+                        <FontAwesomeIcon icon="save" className={classes.icon} />
+                    </Button>
+                    <Button onClick={onCancel}>
+                        Cancel
+                        <FontAwesomeIcon icon="window-close" className={classes.icon} />
+                    </Button>
                 </>
             ) : (
                 <>
-                    <IconButton onClick={onEdit}>
-                        <FontAwesomeIcon icon="edit" />
-                    </IconButton>
-                    <IconButton onClick={onTrash}>
-                        <FontAwesomeIcon icon="trash" />
-                    </IconButton>
+                    <Button onClick={onEdit}>
+                        Edit
+                        <FontAwesomeIcon icon="edit" className={classes.icon} />
+                    </Button>
+                    <Button onClick={onTrash}>
+                        Delete
+                        <FontAwesomeIcon icon="trash" className={classes.icon} />
+                    </Button>
                 </>
             )}
         </Box>
