@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+
 import {
     Grid,
     Button,
@@ -11,13 +12,22 @@ import {
     Select,
     MenuItem,
 } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { PostCard, AddElementCard } from '.'
 import { addPost } from '../actions/posts'
 
+const useStyles = makeStyles(theme => ({
+    formControl: {
+        minWidth: 120,
+        margin: theme.spacing(1),
+    },
+}))
+
 const Posts = ({ dispatch, posts, categories }) => {
+    const classes = useStyles()
     const [sorting, setSorting] = useState({
         direction: 'desc',
         field: 'timestamp',
@@ -28,6 +38,7 @@ const Posts = ({ dispatch, posts, categories }) => {
     const reset = () => {
         setTitle('')
         setBody('')
+        setCategory(null)
     }
 
     const postSort = (aId, bId) => {
@@ -79,7 +90,7 @@ const Posts = ({ dispatch, posts, categories }) => {
                 <Box mt={1}>
                     <AddElementCard
                         onSubmit={() => {
-                            dispatch(addPost({ title, body }))
+                            dispatch(addPost({ title, body, category }))
                             reset()
                         }}
                     >
@@ -88,14 +99,16 @@ const Posts = ({ dispatch, posts, categories }) => {
                             value={title}
                             onChange={e => setTitle(e.target.value)}
                             placeholder="Give your post a title..."
+                            className={classes.formControl}
                         />
                         <Input
                             fullWidth
                             value={body}
                             onChange={e => setBody(e.target.value)}
                             placeholder="Write a post body..."
+                            className={classes.formControl}
                         />
-                        <FormControl>
+                        <FormControl className={classes.formControl}>
                             <InputLabel htmlFor="category">Category</InputLabel>
                             <Select
                                 value={category}
