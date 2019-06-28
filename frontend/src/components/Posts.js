@@ -1,15 +1,34 @@
 import React, { useState } from 'react'
-import { Grid, Button, Typography } from '@material-ui/core'
+import { connect } from 'react-redux'
+import {
+    Grid,
+    Button,
+    Typography,
+    Box,
+    Input,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+} from '@material-ui/core'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { PostCard } from '.'
+import { PostCard, AddElementCard } from '.'
+import { addPost } from '../actions/posts'
 
-const Posts = ({ posts }) => {
+const Posts = ({ dispatch, posts, categories }) => {
     const [sorting, setSorting] = useState({
         direction: 'desc',
         field: 'timestamp',
     })
+    const [body, setBody] = useState('')
+    const [title, setTitle] = useState('')
+    const [category, setCategory] = useState('')
+    const reset = () => {
+        setTitle('')
+        setBody('')
+    }
 
     const postSort = (aId, bId) => {
         const { direction, field } = sorting
@@ -56,6 +75,47 @@ const Posts = ({ posts }) => {
             ) : (
                 <Typography>No Posts found!</Typography>
             )}
+            <Grid item xs={12}>
+                <Box mt={1}>
+                    <AddElementCard
+                        onSubmit={() => {
+                            dispatch(addPost({ title, body }))
+                            reset()
+                        }}
+                    >
+                        <Input
+                            fullWidth
+                            value={title}
+                            onChange={e => setTitle(e.target.value)}
+                            placeholder="Give your post a title..."
+                        />
+                        <Input
+                            fullWidth
+                            value={body}
+                            onChange={e => setBody(e.target.value)}
+                            placeholder="Write a post body..."
+                        />
+                        <FormControl>
+                            <InputLabel htmlFor="category">Category</InputLabel>
+                            <Select
+                                value={category}
+                                onChange={e => setCategory(e.target.value)}
+                                inputProps={{
+                                    id: 'category',
+                                }}
+                                autoWidth
+                                style={{ minWidth: 'fit-content' }}
+                            >
+                                {categories.map(category => (
+                                    <MenuItem value={category.path} key={category.path}>
+                                        {category.name}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </AddElementCard>
+                </Box>
+            </Grid>
         </Grid>
     )
 }
@@ -89,4 +149,6 @@ const SortButton = ({ field, sortClick, sorting }) => {
     )
 }
 
-export default Posts
+const mapStateToProps = ({ categories, dispatch }) => ({ categories, dispatch })
+
+export default connect(mapStateToProps)(Posts)

@@ -28,7 +28,6 @@ const PostDetails = ({ dispatch, match, post, comments }) => {
     )
 }
 
-// TODO Move my filter stuff down here
 const mapStateToProps = ({ comments, posts, dispatch }, { match }) => {
     const { postId } = match.params
     return {

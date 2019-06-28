@@ -9,14 +9,13 @@ const Navigation = ({ categories }) => {
             <List>
                 <NavigationItem title="FLIDDIT" subtitle="A social platform" />
                 <Divider />
-                {Object.keys(categories).length &&
-                    Object.keys(categories).map(id => (
-                        <NavigationItem
-                            title={categories[id].name}
-                            key={id}
-                            route={`/${categories[id].path}`}
-                        />
-                    ))}
+                {categories.map(category => (
+                    <NavigationItem
+                        title={category.name}
+                        key={category.name}
+                        route={`/${category.path}`}
+                    />
+                ))}
             </List>
         </Drawer>
     )
