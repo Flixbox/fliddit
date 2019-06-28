@@ -46,7 +46,7 @@ export default (state = [], action) => {
             if (!state) return null
             const { id } = action.payload.request.data
             const result = [...state]
-            state.map((comment, index) => comment.id === id && comment.splice(index, 1))
+            state.map((comment, index) => comment.id === id && result.splice(index, 1))
             return result
         }
         default:
