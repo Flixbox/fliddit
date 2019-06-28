@@ -1,21 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import {
-    Box,
-    Typography,
-    Card,
-    CardActions,
-    Chip,
-    Avatar,
-    Input,
-    IconButton,
-} from '@material-ui/core'
+import { Box, Card, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import { VoteControls, EditControls } from '.'
-import { vote, editComment, deleteComment } from '../actions/comments'
 
 const useStyles = makeStyles(theme => ({
     details: {
