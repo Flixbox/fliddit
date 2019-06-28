@@ -1,5 +1,7 @@
 export const LOAD_COMMENT_SECTION = 'LOAD_COMMENT_SECTION'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export function loadCommentSection({ postId }) {
     return {
@@ -23,6 +25,37 @@ export function vote({ id, option }) {
                 data: {
                     id,
                     option,
+                },
+            },
+        },
+    }
+}
+
+export function editComment({ id, body }) {
+    return {
+        type: EDIT_COMMENT,
+        payload: {
+            request: {
+                method: 'PUT',
+                url: `/comments/${id}`,
+                data: {
+                    id,
+                    body,
+                },
+            },
+        },
+    }
+}
+
+export function deleteComment({ id }) {
+    return {
+        type: DELETE_COMMENT,
+        payload: {
+            request: {
+                method: 'DELETE',
+                url: `/comments/${id}`,
+                data: {
+                    id,
                 },
             },
         },

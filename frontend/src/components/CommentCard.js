@@ -53,51 +53,49 @@ const CommentCard = ({
 
     if (deleted) return null
     return (
-        <Grid item xs={12} lg={6}>
-            <Card>
-                <Box className={classes.details}>
-                    <Box className={classes.top}>
-                        <Box className={classes.voteControls}>
-                            <VoteControls
-                                voteScore={voteScore}
-                                upvote={() => dispatch(vote({ id, option: 'upVote' }))}
-                                downvote={() => dispatch(vote({ id, option: 'downVote' }))}
-                            />
-                        </Box>
-                        <Box className={classes.content}>
-                            <Typography variant="body1">{body}</Typography>
-                        </Box>
-                        <Box className={classes.editControls}>
-                            <IconButton>
-                                <FontAwesomeIcon icon="chevron-down" />
-                            </IconButton>
-                        </Box>
+        <Card>
+            <Box className={classes.details}>
+                <Box className={classes.top}>
+                    <Box className={classes.voteControls}>
+                        <VoteControls
+                            voteScore={voteScore}
+                            upvote={() => dispatch(vote({ id, option: 'upVote' }))}
+                            downvote={() => dispatch(vote({ id, option: 'downVote' }))}
+                        />
                     </Box>
-                    <CardActions>
-                        <Chip
-                            className={classes.chip}
-                            size="small"
-                            avatar={
-                                <Avatar>
-                                    <FontAwesomeIcon icon="user" />
-                                </Avatar>
-                            }
-                            label={author}
-                        />
-                        <Chip
-                            className={classes.chip}
-                            size="small"
-                            avatar={
-                                <Avatar>
-                                    <FontAwesomeIcon icon="calendar" />
-                                </Avatar>
-                            }
-                            label={new Date(timestamp).toLocaleDateString()}
-                        />
-                    </CardActions>
+                    <Box className={classes.content}>
+                        <Typography variant="body1">{body}</Typography>
+                    </Box>
+                    <Box className={classes.editControls}>
+                        <IconButton>
+                            <FontAwesomeIcon icon="chevron-down" />
+                        </IconButton>
+                    </Box>
                 </Box>
-            </Card>
-        </Grid>
+                <CardActions>
+                    <Chip
+                        className={classes.chip}
+                        size="small"
+                        avatar={
+                            <Avatar>
+                                <FontAwesomeIcon icon="user" />
+                            </Avatar>
+                        }
+                        label={author}
+                    />
+                    <Chip
+                        className={classes.chip}
+                        size="small"
+                        avatar={
+                            <Avatar>
+                                <FontAwesomeIcon icon="calendar" />
+                            </Avatar>
+                        }
+                        label={new Date(timestamp).toLocaleDateString()}
+                    />
+                </CardActions>
+            </Box>
+        </Card>
     )
 }
 

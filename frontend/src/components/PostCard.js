@@ -79,127 +79,125 @@ const PostCard = ({
     console.log(titleProp)
     if (deleted) return null
     return (
-        <Grid item xs={12} lg={6}>
-            <Card>
-                <Box className={classes.details}>
-                    <Box className={classes.top}>
-                        <Box className={classes.voteControls}>
-                            <VoteControls
-                                voteScore={voteScore}
-                                upvote={() => dispatch(vote({ id, option: 'upVote' }))}
-                                downvote={() => dispatch(vote({ id, option: 'downVote' }))}
-                            />
-                        </Box>
-                        <Box
-                            className={classes.content}
-                            component={linkingCard && !editMode ? Link : Box}
-                            to={linkingCard && `/${category}/${id}`}
-                        >
-                            {!editMode ? (
-                                <>
-                                    <Typography variant="h5">{title}</Typography>
-                                    <Typography variant="subtitle1" color="textSecondary">
-                                        {body}
-                                    </Typography>
-                                </>
-                            ) : (
-                                <>
-                                    <InputBase
-                                        id="title"
-                                        value={title}
-                                        onChange={e => setTitle(e.target.value)}
-                                        fullWidth
-                                        disabled={editMode ? false : true}
-                                        classes={{
-                                            disabled: classes.disabledInput,
-                                        }}
-                                    />
-                                    <InputBase
-                                        id="body"
-                                        value={body}
-                                        onChange={e => setBody(e.target.value)}
-                                        fullWidth
-                                        disabled={editMode ? false : true}
-                                        classes={{
-                                            disabled: classes.disabledInput,
-                                        }}
-                                    />
-                                </>
-                            )}
-                        </Box>
-                        <Box className={classes.editControls}>
-                            {editMode ? (
-                                <>
-                                    <IconButton
-                                        onClick={() => {
-                                            setEditMode(false)
-                                            dispatch(editPost({ id, title, body }))
-                                        }}
-                                    >
-                                        <FontAwesomeIcon icon="save" />
-                                    </IconButton>
-                                    <IconButton
-                                        onClick={() => {
-                                            setEditMode(false)
-                                            reset({ title: titleProp, body: bodyProp })
-                                        }}
-                                    >
-                                        <FontAwesomeIcon icon="window-close" />
-                                    </IconButton>
-                                </>
-                            ) : (
-                                <>
-                                    <IconButton onClick={() => setEditMode(true)}>
-                                        <FontAwesomeIcon icon="edit" />
-                                    </IconButton>
-                                    <IconButton onClick={() => dispatch(deletePost({ id }))}>
-                                        <FontAwesomeIcon icon="trash" />
-                                    </IconButton>
-                                </>
-                            )}
-                        </Box>
+        <Card>
+            <Box className={classes.details}>
+                <Box className={classes.top}>
+                    <Box className={classes.voteControls}>
+                        <VoteControls
+                            voteScore={voteScore}
+                            upvote={() => dispatch(vote({ id, option: 'upVote' }))}
+                            downvote={() => dispatch(vote({ id, option: 'downVote' }))}
+                        />
                     </Box>
-                    <CardActions>
-                        <Chip
-                            className={classes.chip}
-                            avatar={
-                                <Avatar>
-                                    <FontAwesomeIcon icon="user" />
-                                </Avatar>
-                            }
-                            label={author}
-                        />
-                        <Chip
-                            className={classes.chip}
-                            avatar={
-                                <Avatar>
-                                    <FontAwesomeIcon icon="tag" />
-                                </Avatar>
-                            }
-                            label={`${category}`}
-                        />
-                        <Chip
-                            className={classes.chip}
-                            avatar={
-                                <Avatar>
-                                    <FontAwesomeIcon icon="comments" />
-                                </Avatar>
-                            }
-                            label={commentCount}
-                        />
-                        <Chip
-                            className={classes.chip}
-                            avatar={
-                                <Avatar>
-                                    <FontAwesomeIcon icon="calendar" />
-                                </Avatar>
-                            }
-                            label={new Date(timestamp).toLocaleDateString()}
-                        />
-                    </CardActions>
+                    <Box
+                        className={classes.content}
+                        component={linkingCard && !editMode ? Link : Box}
+                        to={linkingCard && `/${category}/${id}`}
+                    >
+                        {!editMode ? (
+                            <>
+                                <Typography variant="h5">{title}</Typography>
+                                <Typography variant="subtitle1" color="textSecondary">
+                                    {body}
+                                </Typography>
+                            </>
+                        ) : (
+                            <>
+                                <InputBase
+                                    id="title"
+                                    value={title}
+                                    onChange={e => setTitle(e.target.value)}
+                                    fullWidth
+                                    disabled={editMode ? false : true}
+                                    classes={{
+                                        disabled: classes.disabledInput,
+                                    }}
+                                />
+                                <InputBase
+                                    id="body"
+                                    value={body}
+                                    onChange={e => setBody(e.target.value)}
+                                    fullWidth
+                                    disabled={editMode ? false : true}
+                                    classes={{
+                                        disabled: classes.disabledInput,
+                                    }}
+                                />
+                            </>
+                        )}
+                    </Box>
+                    <Box className={classes.editControls}>
+                        {editMode ? (
+                            <>
+                                <IconButton
+                                    onClick={() => {
+                                        setEditMode(false)
+                                        dispatch(editPost({ id, title, body }))
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon="save" />
+                                </IconButton>
+                                <IconButton
+                                    onClick={() => {
+                                        setEditMode(false)
+                                        reset({ title: titleProp, body: bodyProp })
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon="window-close" />
+                                </IconButton>
+                            </>
+                        ) : (
+                            <>
+                                <IconButton onClick={() => setEditMode(true)}>
+                                    <FontAwesomeIcon icon="edit" />
+                                </IconButton>
+                                <IconButton onClick={() => dispatch(deletePost({ id }))}>
+                                    <FontAwesomeIcon icon="trash" />
+                                </IconButton>
+                            </>
+                        )}
+                    </Box>
                 </Box>
-            </Card>
-        </Grid>
+                <CardActions>
+                    <Chip
+                        className={classes.chip}
+                        avatar={
+                            <Avatar>
+                                <FontAwesomeIcon icon="user" />
+                            </Avatar>
+                        }
+                        label={author}
+                    />
+                    <Chip
+                        className={classes.chip}
+                        avatar={
+                            <Avatar>
+                                <FontAwesomeIcon icon="tag" />
+                            </Avatar>
+                        }
+                        label={`${category}`}
+                    />
+                    <Chip
+                        className={classes.chip}
+                        avatar={
+                            <Avatar>
+                                <FontAwesomeIcon icon="comments" />
+                            </Avatar>
+                        }
+                        label={commentCount}
+                    />
+                    <Chip
+                        className={classes.chip}
+                        avatar={
+                            <Avatar>
+                                <FontAwesomeIcon icon="calendar" />
+                            </Avatar>
+                        }
+                        label={new Date(timestamp).toLocaleDateString()}
+                    />
+                </CardActions>
+            </Box>
+        </Card>
     )
 }
 

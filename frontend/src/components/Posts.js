@@ -47,7 +47,11 @@ const Posts = ({ posts }) => {
                     {shouldDisplay &&
                         Object.keys(posts)
                             .sort(postSort)
-                            .map(id => <PostCard {...posts[id]} key={id} linkingCard={true} />)}
+                            .map(id => (
+                                <Grid item xs={12} lg={6} key={id}>
+                                    <PostCard {...posts[id]} linkingCard={true} />
+                                </Grid>
+                            ))}
                 </>
             ) : (
                 <Typography>No Posts found!</Typography>
