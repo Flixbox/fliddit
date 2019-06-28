@@ -18,7 +18,7 @@ import { makeStyles } from '@material-ui/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { PostCard, AddElementCard } from '.'
-import { addPost } from '../actions/posts'
+import { addPost, ADD_POST } from '../actions/posts'
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -40,6 +40,14 @@ const Posts = ({ dispatch, match, posts, categories, category }) => {
         setTitle('')
         setBody('')
         setNewPostCategory(category)
+    }
+    const [retryMode, setRetryMode] = useState(false)
+    const submitData = () => {
+        if (!body) return null
+        // Only reset the form if we are successful
+        dispatch(addPost({ title, body, category: newPostCategory })).then(({ type }) =>
+            type === `${ADD_POST}_SUCCESS` ? reset() : setRetryMode(true)
+        )
     }
 
     useEffect(() => {
@@ -98,11 +106,9 @@ const Posts = ({ dispatch, match, posts, categories, category }) => {
             <Grid item xs={12}>
                 <Box mt={1}>
                     <AddElementCard
-                        onSubmit={() => {
-                            if (!title || !body) return null
-                            dispatch(addPost({ title, body, category: newPostCategory }))
-                            reset()
-                        }}
+                        onSubmit={submitData}
+                        retryMode={retryMode}
+                        onRetry={submitData}
                     >
                         <Input
                             fullWidth
