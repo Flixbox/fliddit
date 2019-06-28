@@ -30,7 +30,7 @@ const AddElementCard = ({ children, retryMode, onSubmit, onRetry }) => {
             <Box className={classes.details}>
                 <Box className={classes.content}>{children}</Box>
                 <Box className={classes.editControls} m={1}>
-                    {retryMode && (
+                    {retryMode ? (
                         <Button onClick={onRetry}>
                             <Typography color="error">Retry?</Typography>
                             <FontAwesomeIcon
@@ -39,11 +39,12 @@ const AddElementCard = ({ children, retryMode, onSubmit, onRetry }) => {
                                 color={theme.palette.error.main}
                             />
                         </Button>
+                    ) : (
+                        <Button onClick={onSubmit}>
+                            Add
+                            <FontAwesomeIcon icon="paper-plane" className={classes.icon} />
+                        </Button>
                     )}
-                    <Button onClick={onSubmit}>
-                        Add
-                        <FontAwesomeIcon icon="paper-plane" className={classes.icon} />
-                    </Button>
                 </Box>
             </Box>
         </Card>
