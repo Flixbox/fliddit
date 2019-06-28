@@ -22,7 +22,12 @@ const CommentSection = ({ dispatch, comments, postId }) => {
                         reset()
                     }}
                 >
-                    <Input fullWidth value={body} onChange={e => setBody(e.target.value)} />
+                    <Input
+                        fullWidth
+                        value={body}
+                        onChange={e => setBody(e.target.value)}
+                        placeholder="Write a comment..."
+                    />
                 </AddElementCard>
             </Box>
         </Box>
